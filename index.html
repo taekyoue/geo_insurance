@@ -480,11 +480,10 @@ body {
 .data-table th {
   padding: var(--space-3) var(--space-4);
   text-align: left;
-  font-weight: 600;
-  font-size: var(--text-xs);
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  color: var(--color-text-tertiary);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  letter-spacing: 0.01em;
+  color: var(--color-text-primary);
   background: var(--color-surface-alt);
   border-bottom: 1px solid var(--color-border);
   white-space: nowrap;
@@ -940,9 +939,9 @@ body {
 
 .grp__sub {
   margin-left: var(--space-2);
-  font-size: var(--text-xs);
+  font-size: var(--text-sm);
   font-weight: 500;
-  opacity: 0.75;
+  color: var(--color-text-secondary);
 }
 
 .grp__max {
@@ -950,9 +949,11 @@ body {
   margin-left: var(--space-2);
   padding: 1px var(--space-2);
   border-radius: 999px;
-  background: rgba(255,255,255,0.8);
+  background: #fff;
+  border: 1px solid var(--color-border);
   font-size: var(--text-xs);
   font-weight: 800;
+  color: var(--color-text-primary);
 }
 
 .data-table--detail th.sub sup {
@@ -986,8 +987,8 @@ body {
   opacity: 0.75;
 }
 
-.grp--m { background: #E7F0FB; color: #1557B0; }
-.grp--c { background: #FDF1DC; color: #8A5A00; }
+.grp--m { background: #EDF2F7; }
+.grp--c { background: #EDF2F7; }
 
 .data-table--detail th.sub {
   text-transform: none;
@@ -1006,15 +1007,15 @@ body {
 
 .data-table--detail th.sub i {
   display: block;
-  margin-top: 1px;
+  margin-top: 2px;
   font-style: normal;
-  font-size: 10px;
+  font-size: var(--text-xs);
   font-weight: 500;
-  opacity: 0.7;
+  color: var(--color-text-secondary);
   white-space: nowrap;
 }
-.sub--m { background: #F3F8FE; color: #1557B0; }
-.sub--c { background: #FEF9F0; color: #8A5A00; }
+.sub--m { background: #F5F7FA; }
+.sub--c { background: #F5F7FA; }
 .sub--total { font-weight: 800; }
 
 /* --- 측정값 + 환산점수 셀 --- */
@@ -1063,8 +1064,8 @@ body {
   font-weight: 800;
   white-space: nowrap;
 }
-.subtotal--m { background: #F3F8FE; color: #1557B0; }
-.subtotal--c { background: #FEF9F0; color: #8A5A00; }
+.subtotal--m { background: #F5F7FA; color: var(--color-text-primary); }
+.subtotal--c { background: #F5F7FA; color: var(--color-text-primary); }
 
 .total-cell {
   font-size: var(--text-xl);
@@ -1368,7 +1369,6 @@ body {
 
       <div class="chart-card" style="margin-top: var(--space-5);">
         <h3 class="chart-card__title">4개 축 한눈에 보기</h3>
-        <p class="chart-card__desc">위 표의 네 지표를 겹쳐 그린 것 — 바깥으로 넓을수록 좋습니다</p>
         <div class="chart-card__canvas-wrap chart-card__canvas-wrap--radar">
           <canvas id="chart-radar"></canvas>
         </div>
@@ -1436,9 +1436,24 @@ body {
 const GEO_DATA = {
   "latest_key": "gpt-5.6-luna|latest_accumulated",
   "models": [
+    "gpt-5.6",
     "gpt-5.6-luna"
   ],
   "entries": [
+    {
+      "key": "gpt-5.6|latest_accumulated",
+      "model": "gpt-5.6",
+      "date": "latest_accumulated",
+      "label": "전체 누적",
+      "records": 244
+    },
+    {
+      "key": "gpt-5.6|2026-08-13",
+      "model": "gpt-5.6",
+      "date": "2026-08-13",
+      "label": "2026-08-13",
+      "records": 244
+    },
     {
       "key": "gpt-5.6-luna|latest_accumulated",
       "model": "gpt-5.6-luna",
@@ -1457,7 +1472,7 @@ const GEO_DATA = {
   "history": {
     "gpt-5.6-luna|latest_accumulated": {
       "meta": {
-        "generated_at": "2026-08-18 14:50",
+        "generated_at": "2026-08-18 15:07",
         "model": "gpt-5.6-luna",
         "judge_model": "gpt-5-mini",
         "runs": 2,
@@ -2287,7 +2302,7 @@ const GEO_DATA = {
     },
     "gpt-5.6-luna|2026-08-18": {
       "meta": {
-        "generated_at": "2026-08-18 14:50",
+        "generated_at": "2026-08-18 15:07",
         "model": "gpt-5.6-luna",
         "judge_model": "gpt-5-mini",
         "runs": 2,
@@ -3114,6 +3129,1710 @@ const GEO_DATA = {
           "example_url": "https://www.newsis.com/view/NISX20260727_0003724388?utm_source=openai"
         }
       ]
+    },
+    "gpt-5.6|2026-08-13": {
+      "meta": {
+        "generated_at": "2026-08-18 15:07",
+        "model": "gpt-5.6",
+        "judge_model": "gpt-5-mini",
+        "runs": 2,
+        "total_records": 244,
+        "failed": 0,
+        "mention_scope": "exclude_brand",
+        "date": "2026-08-13"
+      },
+      "summary": [
+        {
+          "company": "삼성화재",
+          "geo_index": 67.39,
+          "rank": 1,
+          "mention_score": 34.39,
+          "citation_score": 32.99,
+          "mention_rate": 37.56,
+          "mention_sov": 22.98,
+          "mention_rate_score": 9.39,
+          "mention_sov_score": 25.0,
+          "mention_count": 74,
+          "mention_total": 197,
+          "citation_rate": 31.98,
+          "citation_sov": 30.58,
+          "citation_rate_score": 7.99,
+          "citation_sov_score": 25.0,
+          "citation_count": 63,
+          "citation_total": 197
+        },
+        {
+          "company": "현대해상",
+          "geo_index": 57.43,
+          "rank": 2,
+          "mention_score": 34.39,
+          "citation_score": 23.04,
+          "mention_rate": 37.56,
+          "mention_sov": 22.98,
+          "mention_rate_score": 9.39,
+          "mention_sov_score": 25.0,
+          "mention_count": 74,
+          "mention_total": 197,
+          "citation_rate": 22.34,
+          "citation_sov": 21.36,
+          "citation_rate_score": 5.58,
+          "citation_sov_score": 17.46,
+          "citation_count": 44,
+          "citation_total": 197
+        },
+        {
+          "company": "DB손해보험",
+          "geo_index": 54.0,
+          "rank": 3,
+          "mention_score": 32.53,
+          "citation_score": 21.47,
+          "mention_rate": 35.53,
+          "mention_sov": 21.74,
+          "mention_rate_score": 8.88,
+          "mention_sov_score": 23.65,
+          "mention_count": 70,
+          "mention_total": 197,
+          "citation_rate": 20.81,
+          "citation_sov": 19.9,
+          "citation_rate_score": 5.2,
+          "citation_sov_score": 16.27,
+          "citation_count": 41,
+          "citation_total": 197
+        },
+        {
+          "company": "KB손해보험",
+          "geo_index": 51.16,
+          "rank": 4,
+          "mention_score": 30.21,
+          "citation_score": 20.95,
+          "mention_rate": 32.99,
+          "mention_sov": 20.19,
+          "mention_rate_score": 8.25,
+          "mention_sov_score": 21.96,
+          "mention_count": 65,
+          "mention_total": 197,
+          "citation_rate": 20.3,
+          "citation_sov": 19.42,
+          "citation_rate_score": 5.08,
+          "citation_sov_score": 15.87,
+          "citation_count": 40,
+          "citation_total": 197
+        },
+        {
+          "company": "메리츠화재",
+          "geo_index": 27.55,
+          "rank": 5,
+          "mention_score": 18.12,
+          "citation_score": 9.43,
+          "mention_rate": 19.8,
+          "mention_sov": 12.11,
+          "mention_rate_score": 4.95,
+          "mention_sov_score": 13.18,
+          "mention_count": 39,
+          "mention_total": 197,
+          "citation_rate": 9.14,
+          "citation_sov": 8.74,
+          "citation_rate_score": 2.28,
+          "citation_sov_score": 7.14,
+          "citation_count": 18,
+          "citation_total": 197
+        }
+      ],
+      "by_type": {
+        "비교추천": [
+          {
+            "company": "삼성화재",
+            "geo_index": 80.1,
+            "rank": 1,
+            "mention_score": 42.48,
+            "citation_score": 37.62,
+            "mention_rate": 69.9,
+            "citation_rate": 50.49,
+            "mention_sov": 23.08,
+            "citation_sov": 29.38,
+            "mention_count": 72,
+            "citation_count": 52,
+            "mention_total": 103,
+            "total": 103
+          },
+          {
+            "company": "현대해상",
+            "geo_index": 70.69,
+            "rank": 2,
+            "mention_score": 42.48,
+            "citation_score": 28.22,
+            "mention_rate": 69.9,
+            "citation_rate": 37.86,
+            "mention_sov": 23.08,
+            "citation_sov": 22.03,
+            "mention_count": 72,
+            "citation_count": 39,
+            "mention_total": 103,
+            "total": 103
+          },
+          {
+            "company": "DB손해보험",
+            "geo_index": 66.16,
+            "rank": 3,
+            "mention_score": 40.12,
+            "citation_score": 26.05,
+            "mention_rate": 66.02,
+            "citation_rate": 34.95,
+            "mention_sov": 21.79,
+            "citation_sov": 20.34,
+            "mention_count": 68,
+            "citation_count": 36,
+            "mention_total": 103,
+            "total": 103
+          },
+          {
+            "company": "KB손해보험",
+            "geo_index": 60.45,
+            "rank": 4,
+            "mention_score": 36.58,
+            "citation_score": 23.88,
+            "mention_rate": 60.19,
+            "citation_rate": 32.04,
+            "mention_sov": 19.87,
+            "citation_sov": 18.64,
+            "mention_count": 62,
+            "citation_count": 33,
+            "mention_total": 103,
+            "total": 103
+          },
+          {
+            "company": "메리츠화재",
+            "geo_index": 34.72,
+            "rank": 5,
+            "mention_score": 22.42,
+            "citation_score": 12.3,
+            "mention_rate": 36.89,
+            "citation_rate": 16.5,
+            "mention_sov": 12.18,
+            "citation_sov": 9.6,
+            "mention_count": 38,
+            "citation_count": 17,
+            "mention_total": 103,
+            "total": 103
+          }
+        ],
+        "정보성": [
+          {
+            "company": "삼성화재",
+            "geo_index": 45.12,
+            "rank": 1,
+            "mention_score": 17.2,
+            "citation_score": 27.93,
+            "mention_rate": 2.13,
+            "citation_rate": 11.7,
+            "mention_sov": 20.0,
+            "citation_sov": 37.93,
+            "mention_count": 2,
+            "citation_count": 11,
+            "mention_total": 94,
+            "total": 94
+          },
+          {
+            "company": "KB손해보험",
+            "geo_index": 43.57,
+            "rank": 2,
+            "mention_score": 25.8,
+            "citation_score": 17.77,
+            "mention_rate": 3.19,
+            "citation_rate": 7.45,
+            "mention_sov": 30.0,
+            "citation_sov": 24.14,
+            "mention_count": 3,
+            "citation_count": 7,
+            "mention_total": 94,
+            "total": 94
+          },
+          {
+            "company": "현대해상",
+            "geo_index": 29.89,
+            "rank": 3,
+            "mention_score": 17.2,
+            "citation_score": 12.69,
+            "mention_rate": 2.13,
+            "citation_rate": 5.32,
+            "mention_sov": 20.0,
+            "citation_sov": 17.24,
+            "mention_count": 2,
+            "citation_count": 5,
+            "mention_total": 94,
+            "total": 94
+          },
+          {
+            "company": "DB손해보험",
+            "geo_index": 29.89,
+            "rank": 3,
+            "mention_score": 17.2,
+            "citation_score": 12.69,
+            "mention_rate": 2.13,
+            "citation_rate": 5.32,
+            "mention_sov": 20.0,
+            "citation_sov": 17.24,
+            "mention_count": 2,
+            "citation_count": 5,
+            "mention_total": 94,
+            "total": 94
+          },
+          {
+            "company": "메리츠화재",
+            "geo_index": 11.14,
+            "rank": 5,
+            "mention_score": 8.6,
+            "citation_score": 2.54,
+            "mention_rate": 1.06,
+            "citation_rate": 1.06,
+            "mention_sov": 10.0,
+            "citation_sov": 3.45,
+            "mention_count": 1,
+            "citation_count": 1,
+            "mention_total": 94,
+            "total": 94
+          }
+        ]
+      },
+      "brand": {
+        "company": "KB손해보험",
+        "total_answers": 47,
+        "total_questions": 24,
+        "mention_judged": false,
+        "mention_rate": null,
+        "mention_count": null,
+        "citation_rate": 95.74,
+        "citation_count": 45,
+        "citation_sov": 100.0,
+        "questions": [
+          {
+            "question_id": "B-01",
+            "question": "KB손해보험 고객센터 전화번호가 뭐야?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/m/CG615070001.ec?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG615130004.ec?utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-02",
+            "question": "KB손해보험 고객센터 운영시간 알려줘",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/CG605030001.ec?mdmn=0205"
+            ]
+          },
+          {
+            "question_id": "B-03",
+            "question": "KB손해보험 상담원 바로 연결하려면 어떻게 해?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/CG605030001.ec?utm_source=openai",
+              "https://www.kbinsure.co.kr/pop/CG605030002.ec?utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-04",
+            "question": "KB손해보험은 어떤 회사야? 장단점 알려줘",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/CU601010002.ec?utm_source=openai",
+              "https://www.kbinsure.co.kr/CU608010002.ec?utm_source=openai",
+              "https://insight.kbinsure.co.kr/wp-content/uploads/2026/01/kbinsure_brochure_2025_kor.pdf"
+            ]
+          },
+          {
+            "question_id": "B-05",
+            "question": "KB손해보험 믿을 만한 회사야?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 1,
+            "urls": [
+              "https://www.kbinsure.co.kr/CG801010001.ec",
+              "https://www.kbinsure.co.kr/CG615040002.ec?jsp=error.jsp&utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-06",
+            "question": "KB손해보험에 대한 고객에 대한 평가는 어때?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 1,
+            "urls": [
+              "https://www.kbinsure.co.kr/images/co_intrd/esg_mng/pdf/2024_investVw.pdf?utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-07",
+            "question": "KB손해보험 본사는 어디에 있어?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/CU601040001.ec?utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-08",
+            "question": "KB손해보험 보험 가입 시 할인 받으려면 어떻게 해야해 ?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://direct.kbinsure.co.kr/home/app/views/ws/car/individual/DS03_CAR_INDV_IS001M_static.html?utm_source=openai",
+              "https://mdirect.kbinsure.co.kr/mobiapp/views/car/lms/CDW_MOBI_CAR_LMS.html?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG302220001.ec?utm_source=openai",
+              "https://direct.kbinsure.co.kr/home/app/views/ws/car/individual/DS03_CAR_INDV_IS007M_static.html?utm_source=openai",
+              "https://direct.kbinsure.co.kr/home/app/views/ws/car/individual/DS03_CAR_INDV_IS005M_static.html?utm_source=openai",
+              "https://direct.kbinsure.co.kr/home/app/views/ws/car/individual/DS03_CAR_INDV_IS016M_static.html?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG615110001.ec?utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-09",
+            "question": "KB손해보험 다이렉트 보험 가입 상담 번호는 ?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/CG605030001.ec?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG615130004.ec?utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-10",
+            "question": "KB손해보험 보험금 청구는 어떻게 해?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/CG212010002.ec?mdmn=0202&utm_source=openai",
+              "https://www.kbinsure.co.kr/CG205020003.ec?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG205010001.ec?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG205010001.ec",
+              "https://www.kbinsure.co.kr/CG205020003.ec",
+              "https://www.kbinsure.co.kr/images/claim_svc/reqdoc_genal.pdf"
+            ]
+          },
+          {
+            "question_id": "B-11",
+            "question": "KB손해보험 앱으로 보험금 청구하려면 어떻게 해?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/CG205010001.ec?utm_source=openai",
+              "https://www.kbinsure.co.kr/pop/CC101080008.ec?utm_source=openai",
+              "https://insight.kbinsure.co.kr/insurance-claim-process-app-260326/?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG212010002.ec?mdmn=0202&utm_source=openai",
+              "https://www.kbinsure.co.kr/CG212010001.ecs?utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-12",
+            "question": "KB손해보험 보험금 청구할 때 서류 뭐 필요해?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/CG604010303.ec?mdmn=0203",
+              "https://www.kbinsure.co.kr/CG205010001.ec"
+            ]
+          },
+          {
+            "question_id": "B-13",
+            "question": "KB손해보험 보험금은 청구하면 며칠 만에 나와?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/images/claim_svc/reqdoc_genal.pdf?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG212010002.ec?mdmn=0202&utm_source=openai",
+              "https://www.kbinsure.co.kr/m/CG205010002.ec?utm_source=openai",
+              "https://www.kbinsure.co.kr/m/CG205010003.ec?utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-14",
+            "question": "KB손해보험 보험금 지급이 거절되면 어떻게 해?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/m/CG205010002.ec?utm_source=openai",
+              "https://www.kbinsure.co.kr/images/claim_svc/reqdoc_genal.pdf?utm_source=openai",
+              "https://direct.kbinsure.co.kr/dwlddoc/KB_Direct_LngtrmDriver%2824468%29_202404.pdf?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG802020401.ec?utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-15",
+            "question": "KB손해보험 자동차 사고 나면 어떻게 접수해?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/pop/CG605030001.ec",
+              "https://www.kbinsure.co.kr/pop/CC101080007.ec?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG208030004.ec?utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-17",
+            "question": "KB손해보험 사고 접수 후 진행상황 어떻게 확인해?",
+            "runs": 1,
+            "mention_hits": 0,
+            "citation_hits": 1,
+            "urls": [
+              "https://www.kbinsure.co.kr/CG212030016.ec?mdmn=0202&utm_source=openai",
+              "https://www.kbinsure.co.kr/CG212020001.ecs?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG609000001.ec?utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-18",
+            "question": "KB손해보험 내 보험 계약 내용 어디서 조회해?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/CG101010001.ec?mdmn=0202&utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-19",
+            "question": "KB손해보험 보험 증권 어디서 확인해?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/CG108010001.ec?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG108010001.ec?go=reissue&utm_source=openai",
+              "https://www.kbinsure.co.kr/CG108010001.ecs?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG101010001.ec?mdmn=0202&utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-20",
+            "question": "KB손해보험 보험료 카드로 낼 수 있어?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/CG105030008.ec?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG103110001.ec?utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-21",
+            "question": "KB손해보험 보험료 자동이체 신청 어떻게 해?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/CG103060007.ec?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG604010201.ec?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG605030001.ec?mdmn=0205&utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-22",
+            "question": "KB손해보험 자동차보험 갱신 어떻게 해?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/CG308010001.ec",
+              "https://m.kbinsure.co.kr/?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG301010012.ec?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG308010001.ec?utm_source=openai",
+              "https://direct.kbinsure.co.kr/home/app/views/ws/car/individual/DS03_CAR_INDV_IS002M_static.html?utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-23",
+            "question": "KB손해보험 보험 해지하려면 어떻게 해?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/CG104020005.ecs?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG101010001.ec?mdmn=0202&utm_source=openai",
+              "https://www.kbinsure.co.kr/CG602010001.ec?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG605030001.ec?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG607000001.ec?utm_source=openai",
+              "https://www.kbinsure.co.kr/ceo/CG802020104.ec?utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-24",
+            "question": "KB손해보험 해지환급금 조회는 어떻게 해?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/CG602010001.ecs?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG101010001.ec?mdmn=0202&utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-25",
+            "question": "KB손해보험 자동차보험 마일리지 환급은 어떻게 받아?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/CG103100001.ecs?mdmn=0202",
+              "https://www.kbinsure.co.kr/CG301030001.ec",
+              "https://www.kbinsure.co.kr/CG103100001.ecs?mdmn=0202&utm_source=openai",
+              "https://direct.kbinsure.co.kr/home/app/views/ws/car/individual/DS03_CAR_INDV_IS002M_static.html?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG103100001.ec?utm_source=openai"
+            ]
+          }
+        ]
+      },
+      "domains": [
+        {
+          "domain": "kbinsure.co.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 121,
+          "example_url": "https://www.kbinsure.co.kr/m/CG615070001.ec?utm_source=openai"
+        },
+        {
+          "domain": "fsc.go.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 85,
+          "example_url": "https://www.fsc.go.kr/po010105/73716?utm_source=openai"
+        },
+        {
+          "domain": "consumer.knia.or.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 53,
+          "example_url": "https://consumer.knia.or.kr/disclosure/company/All/10.do?utm_source=openai"
+        },
+        {
+          "domain": "edu.knia.or.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 48,
+          "example_url": "https://edu.knia.or.kr/edu/product3_1.do?utm_source=openai"
+        },
+        {
+          "domain": "law.go.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 42,
+          "example_url": "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1029343165&utm_source=openai"
+        },
+        {
+          "domain": "direct.samsungfire.com",
+          "company": "-",
+          "content_type": "",
+          "count": 40,
+          "example_url": "https://direct.samsungfire.com/m/mall/MP030101_001.html?utm_source=openai"
+        },
+        {
+          "domain": "e-insmarket.or.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 38,
+          "example_url": "https://e-insmarket.or.kr/guaranteeIns/guaranteeInsList.knia?insrCmpyNm=&menuId=C001&ordering=ASC&prdtCd=&prdtNm=&prdtSmlClsCd=C001&rgtMgntCd=L0&utm_source=openai"
+        },
+        {
+          "domain": "carinfo.knia.or.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 35,
+          "example_url": "https://carinfo.knia.or.kr/lmxsrv/mobile/main.do?utm_source=openai"
+        },
+        {
+          "domain": "samsungfire.com",
+          "company": "-",
+          "content_type": "",
+          "count": 35,
+          "example_url": "https://www.samsungfire.com/publication/pdf/20071_0_20250816_file1.pdf?_v=202509012348&utm_source=openai"
+        },
+        {
+          "domain": "direct.kbinsure.co.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 25,
+          "example_url": "https://direct.kbinsure.co.kr/home/app/views/ws/car/individual/DS03_CAR_INDV_IS001M_static.html?utm_source=openai"
+        },
+        {
+          "domain": "knia.or.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 24,
+          "example_url": "https://www.knia.or.kr/file-manager/104989?utm_source=openai"
+        },
+        {
+          "domain": "directdb.co.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 22,
+          "example_url": "https://www.directdb.co.kr/at/prd/atarc/step1/formStepPreView.do?partner_code=C331&utm_source=openai"
+        },
+        {
+          "domain": "insight.kbinsure.co.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 17,
+          "example_url": "https://insight.kbinsure.co.kr/wp-content/uploads/2026/01/kbinsure_brochure_2025_kor.pdf"
+        },
+        {
+          "domain": "hi.co.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 17,
+          "example_url": "https://www.hi.co.kr/serviceAction.do?menuId=100521&utm_source=openai"
+        },
+        {
+          "domain": "cont.insure.or.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 15,
+          "example_url": "https://cont.insure.or.kr/cont_web/information/information.do?utm_source=openai"
+        },
+        {
+          "domain": "direct.hi.co.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 14,
+          "example_url": "https://direct.hi.co.kr/service.do?_BT_tab=PRDD0009&inpath=MB&m=8885e86ec1&tagtype=9&utm_source=openai"
+        },
+        {
+          "domain": "idbins.com",
+          "company": "-",
+          "content_type": "",
+          "count": 13,
+          "example_url": "https://www.idbins.com/FWMALV0459_1.do?utm_source=openai"
+        },
+        {
+          "domain": "mois.go.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 13,
+          "example_url": "https://mois.go.kr/frt/sub/a06/b11/disasterGuarantee/screen.do?utm_source=openai"
+        },
+        {
+          "domain": "kiri.or.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 11,
+          "example_url": "https://kiri.or.kr/PDF/weeklytrend/20250324/trend20250324_11.pdf"
+        },
+        {
+          "domain": "eiec.kdi.re.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 11,
+          "example_url": "https://eiec.kdi.re.kr/policy/materialView.do?num=280556&pg=&pp=&topic=P&utm_source=openai"
+        },
+        {
+          "domain": "d.samsungfire.com",
+          "company": "-",
+          "content_type": "",
+          "count": 10,
+          "example_url": "https://d.samsungfire.com/mall/PP030102_001.html?utm_source=openai"
+        },
+        {
+          "domain": "easylaw.go.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 10,
+          "example_url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=4&cciNo=2&cnpClsNo=1&csmSeq=2588&menuType=onhunqna&popMenu=ov&utm_source=openai"
+        },
+        {
+          "domain": "dazabi.com",
+          "company": "-",
+          "content_type": "",
+          "count": 10,
+          "example_url": "https://dazabi.com/insurance_magazine/article.php?from_category=&id=2243&utm_source=openai"
+        },
+        {
+          "domain": "kbthink.com",
+          "company": "-",
+          "content_type": "",
+          "count": 9,
+          "example_url": "https://kbthink.com/news-list/view.html?newsId=20260329090502377"
+        },
+        {
+          "domain": "kpub.knia.or.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 9,
+          "example_url": "https://kpub.knia.or.kr/carInsuranceDisc/product/carProductInf.do?utm_source=openai"
+        },
+        {
+          "domain": "play.google.com",
+          "company": "-",
+          "content_type": "",
+          "count": 6,
+          "example_url": "https://play.google.com/store/apps/details?hl=ko&id=com.kbins.kbinsure&utm_source=openai"
+        },
+        {
+          "domain": "kind.krx.co.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 6,
+          "example_url": "https://kind.krx.co.kr/external/2026/06/02/000793/20260602001801/10002.htm?utm_source=openai"
+        },
+        {
+          "domain": "mdirect.hi.co.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 6,
+          "example_url": "https://mdirect.hi.co.kr/service.do?m=074b8f3cf5&utm_source=openai"
+        },
+        {
+          "domain": "kcsi.kmac.co.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 6,
+          "example_url": "https://kcsi.kmac.co.kr/upload/kcsi/library/2025/a7e227d5-cc90-4b3a-8467-28460141aaa5.pdf?utm_source=openai"
+        },
+        {
+          "domain": "axa.co.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 6,
+          "example_url": "https://www.axa.co.kr/cms/product/cyms0205/cyms020501/CMKPDI01M01_CMS001.html"
+        },
+        {
+          "domain": "m.directdb.co.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 6,
+          "example_url": "https://m.directdb.co.kr/comm/bnf/evt/atarcDstTtyView.do?pageDvn=trvDstc"
+        },
+        {
+          "domain": "lotteins.co.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 6,
+          "example_url": "https://www.lotteins.co.kr/upload/C/STORE/golf/driver%28golf%29_2604.pdf?utm_source=openai"
+        },
+        {
+          "domain": "direct.hanwhalife.com",
+          "company": "-",
+          "content_type": "",
+          "count": 5,
+          "example_url": "https://direct.hanwhalife.com/products/CMS00037?utm_source=openai"
+        },
+        {
+          "domain": "store.meritzfire.com",
+          "company": "-",
+          "content_type": "",
+          "count": 5,
+          "example_url": "https://store.meritzfire.com/health-and-kids/custom-simple.do?utm_source=openai"
+        },
+        {
+          "domain": "dongbuinsurance.com",
+          "company": "-",
+          "content_type": "",
+          "count": 4,
+          "example_url": "https://www.dongbuinsurance.com/pcweb/bizxpress/ct/cp/fn/__etc/2021_01.pdf?utm_source=openai"
+        },
+        {
+          "domain": "chac.samsungfire.com",
+          "company": "-",
+          "content_type": "",
+          "count": 4,
+          "example_url": "https://chac.samsungfire.com/mall/blog/driver_cont_04.html?utm_source=openai"
+        },
+        {
+          "domain": "klia.or.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 4,
+          "example_url": "https://www.klia.or.kr/main.do?utm_source=openai"
+        },
+        {
+          "domain": "chungbuk.go.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 4,
+          "example_url": "https://www.chungbuk.go.kr/sobi/selectBbsNttView.do?bbsNo=218&key=1575&nttNo=276888&pageIndex=119&searchCnd=all&searchCtgry=&searchKrwd=&utm_source=openai"
+        },
+        {
+          "domain": "ins24.go.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 4,
+          "example_url": "https://www.ins24.go.kr/dsis/intro/view.do"
+        },
+        {
+          "domain": "golfbohum.com",
+          "company": "-",
+          "content_type": "",
+          "count": 4,
+          "example_url": "https://golfbohum.com/golf-comparison/"
+        }
+      ]
+    },
+    "gpt-5.6|latest_accumulated": {
+      "meta": {
+        "generated_at": "2026-08-18 15:07",
+        "model": "gpt-5.6",
+        "judge_model": "gpt-5-mini",
+        "runs": 2,
+        "total_records": 244,
+        "failed": 0,
+        "mention_scope": "exclude_brand",
+        "date": "전체 누적 (2026-08-18)"
+      },
+      "summary": [
+        {
+          "company": "삼성화재",
+          "geo_index": 67.39,
+          "rank": 1,
+          "mention_score": 34.39,
+          "citation_score": 32.99,
+          "mention_rate": 37.56,
+          "mention_sov": 22.98,
+          "mention_rate_score": 9.39,
+          "mention_sov_score": 25.0,
+          "mention_count": 74,
+          "mention_total": 197,
+          "citation_rate": 31.98,
+          "citation_sov": 30.58,
+          "citation_rate_score": 7.99,
+          "citation_sov_score": 25.0,
+          "citation_count": 63,
+          "citation_total": 197
+        },
+        {
+          "company": "현대해상",
+          "geo_index": 57.43,
+          "rank": 2,
+          "mention_score": 34.39,
+          "citation_score": 23.04,
+          "mention_rate": 37.56,
+          "mention_sov": 22.98,
+          "mention_rate_score": 9.39,
+          "mention_sov_score": 25.0,
+          "mention_count": 74,
+          "mention_total": 197,
+          "citation_rate": 22.34,
+          "citation_sov": 21.36,
+          "citation_rate_score": 5.58,
+          "citation_sov_score": 17.46,
+          "citation_count": 44,
+          "citation_total": 197
+        },
+        {
+          "company": "DB손해보험",
+          "geo_index": 54.0,
+          "rank": 3,
+          "mention_score": 32.53,
+          "citation_score": 21.47,
+          "mention_rate": 35.53,
+          "mention_sov": 21.74,
+          "mention_rate_score": 8.88,
+          "mention_sov_score": 23.65,
+          "mention_count": 70,
+          "mention_total": 197,
+          "citation_rate": 20.81,
+          "citation_sov": 19.9,
+          "citation_rate_score": 5.2,
+          "citation_sov_score": 16.27,
+          "citation_count": 41,
+          "citation_total": 197
+        },
+        {
+          "company": "KB손해보험",
+          "geo_index": 51.16,
+          "rank": 4,
+          "mention_score": 30.21,
+          "citation_score": 20.95,
+          "mention_rate": 32.99,
+          "mention_sov": 20.19,
+          "mention_rate_score": 8.25,
+          "mention_sov_score": 21.96,
+          "mention_count": 65,
+          "mention_total": 197,
+          "citation_rate": 20.3,
+          "citation_sov": 19.42,
+          "citation_rate_score": 5.08,
+          "citation_sov_score": 15.87,
+          "citation_count": 40,
+          "citation_total": 197
+        },
+        {
+          "company": "메리츠화재",
+          "geo_index": 27.55,
+          "rank": 5,
+          "mention_score": 18.12,
+          "citation_score": 9.43,
+          "mention_rate": 19.8,
+          "mention_sov": 12.11,
+          "mention_rate_score": 4.95,
+          "mention_sov_score": 13.18,
+          "mention_count": 39,
+          "mention_total": 197,
+          "citation_rate": 9.14,
+          "citation_sov": 8.74,
+          "citation_rate_score": 2.28,
+          "citation_sov_score": 7.14,
+          "citation_count": 18,
+          "citation_total": 197
+        }
+      ],
+      "by_type": {
+        "비교추천": [
+          {
+            "company": "삼성화재",
+            "geo_index": 80.1,
+            "rank": 1,
+            "mention_score": 42.48,
+            "citation_score": 37.62,
+            "mention_rate": 69.9,
+            "citation_rate": 50.49,
+            "mention_sov": 23.08,
+            "citation_sov": 29.38,
+            "mention_count": 72,
+            "citation_count": 52,
+            "mention_total": 103,
+            "total": 103
+          },
+          {
+            "company": "현대해상",
+            "geo_index": 70.69,
+            "rank": 2,
+            "mention_score": 42.48,
+            "citation_score": 28.22,
+            "mention_rate": 69.9,
+            "citation_rate": 37.86,
+            "mention_sov": 23.08,
+            "citation_sov": 22.03,
+            "mention_count": 72,
+            "citation_count": 39,
+            "mention_total": 103,
+            "total": 103
+          },
+          {
+            "company": "DB손해보험",
+            "geo_index": 66.16,
+            "rank": 3,
+            "mention_score": 40.12,
+            "citation_score": 26.05,
+            "mention_rate": 66.02,
+            "citation_rate": 34.95,
+            "mention_sov": 21.79,
+            "citation_sov": 20.34,
+            "mention_count": 68,
+            "citation_count": 36,
+            "mention_total": 103,
+            "total": 103
+          },
+          {
+            "company": "KB손해보험",
+            "geo_index": 60.45,
+            "rank": 4,
+            "mention_score": 36.58,
+            "citation_score": 23.88,
+            "mention_rate": 60.19,
+            "citation_rate": 32.04,
+            "mention_sov": 19.87,
+            "citation_sov": 18.64,
+            "mention_count": 62,
+            "citation_count": 33,
+            "mention_total": 103,
+            "total": 103
+          },
+          {
+            "company": "메리츠화재",
+            "geo_index": 34.72,
+            "rank": 5,
+            "mention_score": 22.42,
+            "citation_score": 12.3,
+            "mention_rate": 36.89,
+            "citation_rate": 16.5,
+            "mention_sov": 12.18,
+            "citation_sov": 9.6,
+            "mention_count": 38,
+            "citation_count": 17,
+            "mention_total": 103,
+            "total": 103
+          }
+        ],
+        "정보성": [
+          {
+            "company": "삼성화재",
+            "geo_index": 45.12,
+            "rank": 1,
+            "mention_score": 17.2,
+            "citation_score": 27.93,
+            "mention_rate": 2.13,
+            "citation_rate": 11.7,
+            "mention_sov": 20.0,
+            "citation_sov": 37.93,
+            "mention_count": 2,
+            "citation_count": 11,
+            "mention_total": 94,
+            "total": 94
+          },
+          {
+            "company": "KB손해보험",
+            "geo_index": 43.57,
+            "rank": 2,
+            "mention_score": 25.8,
+            "citation_score": 17.77,
+            "mention_rate": 3.19,
+            "citation_rate": 7.45,
+            "mention_sov": 30.0,
+            "citation_sov": 24.14,
+            "mention_count": 3,
+            "citation_count": 7,
+            "mention_total": 94,
+            "total": 94
+          },
+          {
+            "company": "현대해상",
+            "geo_index": 29.89,
+            "rank": 3,
+            "mention_score": 17.2,
+            "citation_score": 12.69,
+            "mention_rate": 2.13,
+            "citation_rate": 5.32,
+            "mention_sov": 20.0,
+            "citation_sov": 17.24,
+            "mention_count": 2,
+            "citation_count": 5,
+            "mention_total": 94,
+            "total": 94
+          },
+          {
+            "company": "DB손해보험",
+            "geo_index": 29.89,
+            "rank": 3,
+            "mention_score": 17.2,
+            "citation_score": 12.69,
+            "mention_rate": 2.13,
+            "citation_rate": 5.32,
+            "mention_sov": 20.0,
+            "citation_sov": 17.24,
+            "mention_count": 2,
+            "citation_count": 5,
+            "mention_total": 94,
+            "total": 94
+          },
+          {
+            "company": "메리츠화재",
+            "geo_index": 11.14,
+            "rank": 5,
+            "mention_score": 8.6,
+            "citation_score": 2.54,
+            "mention_rate": 1.06,
+            "citation_rate": 1.06,
+            "mention_sov": 10.0,
+            "citation_sov": 3.45,
+            "mention_count": 1,
+            "citation_count": 1,
+            "mention_total": 94,
+            "total": 94
+          }
+        ]
+      },
+      "brand": {
+        "company": "KB손해보험",
+        "total_answers": 47,
+        "total_questions": 24,
+        "mention_judged": false,
+        "mention_rate": null,
+        "mention_count": null,
+        "citation_rate": 95.74,
+        "citation_count": 45,
+        "citation_sov": 100.0,
+        "questions": [
+          {
+            "question_id": "B-01",
+            "question": "KB손해보험 고객센터 전화번호가 뭐야?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/m/CG615070001.ec?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG615130004.ec?utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-02",
+            "question": "KB손해보험 고객센터 운영시간 알려줘",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/CG605030001.ec?mdmn=0205"
+            ]
+          },
+          {
+            "question_id": "B-03",
+            "question": "KB손해보험 상담원 바로 연결하려면 어떻게 해?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/CG605030001.ec?utm_source=openai",
+              "https://www.kbinsure.co.kr/pop/CG605030002.ec?utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-04",
+            "question": "KB손해보험은 어떤 회사야? 장단점 알려줘",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/CU601010002.ec?utm_source=openai",
+              "https://www.kbinsure.co.kr/CU608010002.ec?utm_source=openai",
+              "https://insight.kbinsure.co.kr/wp-content/uploads/2026/01/kbinsure_brochure_2025_kor.pdf"
+            ]
+          },
+          {
+            "question_id": "B-05",
+            "question": "KB손해보험 믿을 만한 회사야?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 1,
+            "urls": [
+              "https://www.kbinsure.co.kr/CG801010001.ec",
+              "https://www.kbinsure.co.kr/CG615040002.ec?jsp=error.jsp&utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-06",
+            "question": "KB손해보험에 대한 고객에 대한 평가는 어때?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 1,
+            "urls": [
+              "https://www.kbinsure.co.kr/images/co_intrd/esg_mng/pdf/2024_investVw.pdf?utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-07",
+            "question": "KB손해보험 본사는 어디에 있어?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/CU601040001.ec?utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-08",
+            "question": "KB손해보험 보험 가입 시 할인 받으려면 어떻게 해야해 ?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://direct.kbinsure.co.kr/home/app/views/ws/car/individual/DS03_CAR_INDV_IS001M_static.html?utm_source=openai",
+              "https://mdirect.kbinsure.co.kr/mobiapp/views/car/lms/CDW_MOBI_CAR_LMS.html?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG302220001.ec?utm_source=openai",
+              "https://direct.kbinsure.co.kr/home/app/views/ws/car/individual/DS03_CAR_INDV_IS007M_static.html?utm_source=openai",
+              "https://direct.kbinsure.co.kr/home/app/views/ws/car/individual/DS03_CAR_INDV_IS005M_static.html?utm_source=openai",
+              "https://direct.kbinsure.co.kr/home/app/views/ws/car/individual/DS03_CAR_INDV_IS016M_static.html?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG615110001.ec?utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-09",
+            "question": "KB손해보험 다이렉트 보험 가입 상담 번호는 ?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/CG605030001.ec?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG615130004.ec?utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-10",
+            "question": "KB손해보험 보험금 청구는 어떻게 해?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/CG212010002.ec?mdmn=0202&utm_source=openai",
+              "https://www.kbinsure.co.kr/CG205020003.ec?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG205010001.ec?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG205010001.ec",
+              "https://www.kbinsure.co.kr/CG205020003.ec",
+              "https://www.kbinsure.co.kr/images/claim_svc/reqdoc_genal.pdf"
+            ]
+          },
+          {
+            "question_id": "B-11",
+            "question": "KB손해보험 앱으로 보험금 청구하려면 어떻게 해?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/CG205010001.ec?utm_source=openai",
+              "https://www.kbinsure.co.kr/pop/CC101080008.ec?utm_source=openai",
+              "https://insight.kbinsure.co.kr/insurance-claim-process-app-260326/?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG212010002.ec?mdmn=0202&utm_source=openai",
+              "https://www.kbinsure.co.kr/CG212010001.ecs?utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-12",
+            "question": "KB손해보험 보험금 청구할 때 서류 뭐 필요해?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/CG604010303.ec?mdmn=0203",
+              "https://www.kbinsure.co.kr/CG205010001.ec"
+            ]
+          },
+          {
+            "question_id": "B-13",
+            "question": "KB손해보험 보험금은 청구하면 며칠 만에 나와?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/images/claim_svc/reqdoc_genal.pdf?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG212010002.ec?mdmn=0202&utm_source=openai",
+              "https://www.kbinsure.co.kr/m/CG205010002.ec?utm_source=openai",
+              "https://www.kbinsure.co.kr/m/CG205010003.ec?utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-14",
+            "question": "KB손해보험 보험금 지급이 거절되면 어떻게 해?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/m/CG205010002.ec?utm_source=openai",
+              "https://www.kbinsure.co.kr/images/claim_svc/reqdoc_genal.pdf?utm_source=openai",
+              "https://direct.kbinsure.co.kr/dwlddoc/KB_Direct_LngtrmDriver%2824468%29_202404.pdf?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG802020401.ec?utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-15",
+            "question": "KB손해보험 자동차 사고 나면 어떻게 접수해?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/pop/CG605030001.ec",
+              "https://www.kbinsure.co.kr/pop/CC101080007.ec?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG208030004.ec?utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-17",
+            "question": "KB손해보험 사고 접수 후 진행상황 어떻게 확인해?",
+            "runs": 1,
+            "mention_hits": 0,
+            "citation_hits": 1,
+            "urls": [
+              "https://www.kbinsure.co.kr/CG212030016.ec?mdmn=0202&utm_source=openai",
+              "https://www.kbinsure.co.kr/CG212020001.ecs?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG609000001.ec?utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-18",
+            "question": "KB손해보험 내 보험 계약 내용 어디서 조회해?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/CG101010001.ec?mdmn=0202&utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-19",
+            "question": "KB손해보험 보험 증권 어디서 확인해?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/CG108010001.ec?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG108010001.ec?go=reissue&utm_source=openai",
+              "https://www.kbinsure.co.kr/CG108010001.ecs?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG101010001.ec?mdmn=0202&utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-20",
+            "question": "KB손해보험 보험료 카드로 낼 수 있어?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/CG105030008.ec?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG103110001.ec?utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-21",
+            "question": "KB손해보험 보험료 자동이체 신청 어떻게 해?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/CG103060007.ec?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG604010201.ec?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG605030001.ec?mdmn=0205&utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-22",
+            "question": "KB손해보험 자동차보험 갱신 어떻게 해?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/CG308010001.ec",
+              "https://m.kbinsure.co.kr/?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG301010012.ec?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG308010001.ec?utm_source=openai",
+              "https://direct.kbinsure.co.kr/home/app/views/ws/car/individual/DS03_CAR_INDV_IS002M_static.html?utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-23",
+            "question": "KB손해보험 보험 해지하려면 어떻게 해?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/CG104020005.ecs?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG101010001.ec?mdmn=0202&utm_source=openai",
+              "https://www.kbinsure.co.kr/CG602010001.ec?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG605030001.ec?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG607000001.ec?utm_source=openai",
+              "https://www.kbinsure.co.kr/ceo/CG802020104.ec?utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-24",
+            "question": "KB손해보험 해지환급금 조회는 어떻게 해?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/CG602010001.ecs?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG101010001.ec?mdmn=0202&utm_source=openai"
+            ]
+          },
+          {
+            "question_id": "B-25",
+            "question": "KB손해보험 자동차보험 마일리지 환급은 어떻게 받아?",
+            "runs": 2,
+            "mention_hits": 0,
+            "citation_hits": 2,
+            "urls": [
+              "https://www.kbinsure.co.kr/CG103100001.ecs?mdmn=0202",
+              "https://www.kbinsure.co.kr/CG301030001.ec",
+              "https://www.kbinsure.co.kr/CG103100001.ecs?mdmn=0202&utm_source=openai",
+              "https://direct.kbinsure.co.kr/home/app/views/ws/car/individual/DS03_CAR_INDV_IS002M_static.html?utm_source=openai",
+              "https://www.kbinsure.co.kr/CG103100001.ec?utm_source=openai"
+            ]
+          }
+        ]
+      },
+      "domains": [
+        {
+          "domain": "kbinsure.co.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 121,
+          "example_url": "https://www.kbinsure.co.kr/m/CG615070001.ec?utm_source=openai"
+        },
+        {
+          "domain": "fsc.go.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 85,
+          "example_url": "https://www.fsc.go.kr/po010105/73716?utm_source=openai"
+        },
+        {
+          "domain": "consumer.knia.or.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 53,
+          "example_url": "https://consumer.knia.or.kr/disclosure/company/All/10.do?utm_source=openai"
+        },
+        {
+          "domain": "edu.knia.or.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 48,
+          "example_url": "https://edu.knia.or.kr/edu/product3_1.do?utm_source=openai"
+        },
+        {
+          "domain": "law.go.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 42,
+          "example_url": "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1029343165&utm_source=openai"
+        },
+        {
+          "domain": "direct.samsungfire.com",
+          "company": "-",
+          "content_type": "",
+          "count": 40,
+          "example_url": "https://direct.samsungfire.com/m/mall/MP030101_001.html?utm_source=openai"
+        },
+        {
+          "domain": "e-insmarket.or.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 38,
+          "example_url": "https://e-insmarket.or.kr/guaranteeIns/guaranteeInsList.knia?insrCmpyNm=&menuId=C001&ordering=ASC&prdtCd=&prdtNm=&prdtSmlClsCd=C001&rgtMgntCd=L0&utm_source=openai"
+        },
+        {
+          "domain": "carinfo.knia.or.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 35,
+          "example_url": "https://carinfo.knia.or.kr/lmxsrv/mobile/main.do?utm_source=openai"
+        },
+        {
+          "domain": "samsungfire.com",
+          "company": "-",
+          "content_type": "",
+          "count": 35,
+          "example_url": "https://www.samsungfire.com/publication/pdf/20071_0_20250816_file1.pdf?_v=202509012348&utm_source=openai"
+        },
+        {
+          "domain": "direct.kbinsure.co.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 25,
+          "example_url": "https://direct.kbinsure.co.kr/home/app/views/ws/car/individual/DS03_CAR_INDV_IS001M_static.html?utm_source=openai"
+        },
+        {
+          "domain": "knia.or.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 24,
+          "example_url": "https://www.knia.or.kr/file-manager/104989?utm_source=openai"
+        },
+        {
+          "domain": "directdb.co.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 22,
+          "example_url": "https://www.directdb.co.kr/at/prd/atarc/step1/formStepPreView.do?partner_code=C331&utm_source=openai"
+        },
+        {
+          "domain": "insight.kbinsure.co.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 17,
+          "example_url": "https://insight.kbinsure.co.kr/wp-content/uploads/2026/01/kbinsure_brochure_2025_kor.pdf"
+        },
+        {
+          "domain": "hi.co.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 17,
+          "example_url": "https://www.hi.co.kr/serviceAction.do?menuId=100521&utm_source=openai"
+        },
+        {
+          "domain": "cont.insure.or.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 15,
+          "example_url": "https://cont.insure.or.kr/cont_web/information/information.do?utm_source=openai"
+        },
+        {
+          "domain": "direct.hi.co.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 14,
+          "example_url": "https://direct.hi.co.kr/service.do?_BT_tab=PRDD0009&inpath=MB&m=8885e86ec1&tagtype=9&utm_source=openai"
+        },
+        {
+          "domain": "idbins.com",
+          "company": "-",
+          "content_type": "",
+          "count": 13,
+          "example_url": "https://www.idbins.com/FWMALV0459_1.do?utm_source=openai"
+        },
+        {
+          "domain": "mois.go.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 13,
+          "example_url": "https://mois.go.kr/frt/sub/a06/b11/disasterGuarantee/screen.do?utm_source=openai"
+        },
+        {
+          "domain": "kiri.or.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 11,
+          "example_url": "https://kiri.or.kr/PDF/weeklytrend/20250324/trend20250324_11.pdf"
+        },
+        {
+          "domain": "eiec.kdi.re.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 11,
+          "example_url": "https://eiec.kdi.re.kr/policy/materialView.do?num=280556&pg=&pp=&topic=P&utm_source=openai"
+        },
+        {
+          "domain": "d.samsungfire.com",
+          "company": "-",
+          "content_type": "",
+          "count": 10,
+          "example_url": "https://d.samsungfire.com/mall/PP030102_001.html?utm_source=openai"
+        },
+        {
+          "domain": "easylaw.go.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 10,
+          "example_url": "https://easylaw.go.kr/CSP/CnpClsMain.laf?ccfNo=4&cciNo=2&cnpClsNo=1&csmSeq=2588&menuType=onhunqna&popMenu=ov&utm_source=openai"
+        },
+        {
+          "domain": "dazabi.com",
+          "company": "-",
+          "content_type": "",
+          "count": 10,
+          "example_url": "https://dazabi.com/insurance_magazine/article.php?from_category=&id=2243&utm_source=openai"
+        },
+        {
+          "domain": "kbthink.com",
+          "company": "-",
+          "content_type": "",
+          "count": 9,
+          "example_url": "https://kbthink.com/news-list/view.html?newsId=20260329090502377"
+        },
+        {
+          "domain": "kpub.knia.or.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 9,
+          "example_url": "https://kpub.knia.or.kr/carInsuranceDisc/product/carProductInf.do?utm_source=openai"
+        },
+        {
+          "domain": "play.google.com",
+          "company": "-",
+          "content_type": "",
+          "count": 6,
+          "example_url": "https://play.google.com/store/apps/details?hl=ko&id=com.kbins.kbinsure&utm_source=openai"
+        },
+        {
+          "domain": "kind.krx.co.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 6,
+          "example_url": "https://kind.krx.co.kr/external/2026/06/02/000793/20260602001801/10002.htm?utm_source=openai"
+        },
+        {
+          "domain": "mdirect.hi.co.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 6,
+          "example_url": "https://mdirect.hi.co.kr/service.do?m=074b8f3cf5&utm_source=openai"
+        },
+        {
+          "domain": "kcsi.kmac.co.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 6,
+          "example_url": "https://kcsi.kmac.co.kr/upload/kcsi/library/2025/a7e227d5-cc90-4b3a-8467-28460141aaa5.pdf?utm_source=openai"
+        },
+        {
+          "domain": "axa.co.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 6,
+          "example_url": "https://www.axa.co.kr/cms/product/cyms0205/cyms020501/CMKPDI01M01_CMS001.html"
+        },
+        {
+          "domain": "m.directdb.co.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 6,
+          "example_url": "https://m.directdb.co.kr/comm/bnf/evt/atarcDstTtyView.do?pageDvn=trvDstc"
+        },
+        {
+          "domain": "lotteins.co.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 6,
+          "example_url": "https://www.lotteins.co.kr/upload/C/STORE/golf/driver%28golf%29_2604.pdf?utm_source=openai"
+        },
+        {
+          "domain": "direct.hanwhalife.com",
+          "company": "-",
+          "content_type": "",
+          "count": 5,
+          "example_url": "https://direct.hanwhalife.com/products/CMS00037?utm_source=openai"
+        },
+        {
+          "domain": "store.meritzfire.com",
+          "company": "-",
+          "content_type": "",
+          "count": 5,
+          "example_url": "https://store.meritzfire.com/health-and-kids/custom-simple.do?utm_source=openai"
+        },
+        {
+          "domain": "dongbuinsurance.com",
+          "company": "-",
+          "content_type": "",
+          "count": 4,
+          "example_url": "https://www.dongbuinsurance.com/pcweb/bizxpress/ct/cp/fn/__etc/2021_01.pdf?utm_source=openai"
+        },
+        {
+          "domain": "chac.samsungfire.com",
+          "company": "-",
+          "content_type": "",
+          "count": 4,
+          "example_url": "https://chac.samsungfire.com/mall/blog/driver_cont_04.html?utm_source=openai"
+        },
+        {
+          "domain": "klia.or.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 4,
+          "example_url": "https://www.klia.or.kr/main.do?utm_source=openai"
+        },
+        {
+          "domain": "chungbuk.go.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 4,
+          "example_url": "https://www.chungbuk.go.kr/sobi/selectBbsNttView.do?bbsNo=218&key=1575&nttNo=276888&pageIndex=119&searchCnd=all&searchCtgry=&searchKrwd=&utm_source=openai"
+        },
+        {
+          "domain": "ins24.go.kr",
+          "company": "-",
+          "content_type": "",
+          "count": 4,
+          "example_url": "https://www.ins24.go.kr/dsis/intro/view.do"
+        },
+        {
+          "domain": "golfbohum.com",
+          "company": "-",
+          "content_type": "",
+          "count": 4,
+          "example_url": "https://golfbohum.com/golf-comparison/"
+        }
+      ]
     }
   }
 };
@@ -3527,15 +5246,10 @@ const GEO_DATA = {
       html += '</tr>';
     });
 
-    const s0 = summary[0] || {};
     html += `</tbody><tfoot><tr><td colspan="9" class="table-foot">
       <dl class="note-list">
         <dt><sup>*</sup> SOV</dt>
         <dd>Share of Voice — 5개사 등장량을 100%로 놓았을 때 우리 몫. 세로로 더하면 100%가 됩니다.</dd>
-        <dt>막대</dt>
-        <dd>25점 중 얼마나 채웠는지. 규칙이 컬럼마다 달라서 막대 길이로 비교하시면 됩니다.</dd>
-        <dt>분모</dt>
-        <dd class="tabular-nums">언급 ${s0.mention_total ?? '—'}건 · 인용 ${s0.citation_total ?? '—'}건 <em>(브랜드 문항 제외)</em></dd>
       </dl>
     </td></tr></tfoot>`;
     table.innerHTML = html;
