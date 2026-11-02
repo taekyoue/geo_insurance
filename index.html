@@ -1328,6 +1328,113 @@ body {
   .delta-chip { flex: 1 1 calc(50% - var(--space-2)); }
 }
 
+
+/* ============================================================
+   측정 엔진 전환 (ChatGPT / Claude)
+   ============================================================ */
+.engine-switch {
+  display: inline-flex; gap: 3px; padding: 3px;
+  background: var(--color-bg-subtle, #EDF1F7);
+  border: 1px solid var(--color-border); border-radius: 999px;
+}
+.engine-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: inherit; font-size: var(--text-xs); font-weight: 600;
+  color: var(--color-text-tertiary); background: transparent;
+  border: 0; border-radius: 999px; padding: 6px 14px; cursor: pointer;
+  transition: background .15s, color .15s, box-shadow .15s;
+  white-space: nowrap;
+}
+.engine-btn:hover { color: var(--color-text-secondary); }
+.engine-btn.is-active {
+  background: #fff; color: var(--color-text-primary);
+  box-shadow: 0 1px 3px rgba(26, 32, 44, .16);
+}
+/* 심볼은 선택된 탭에서만 브랜드 색을 띤다 */
+.engine-btn__icon {
+  display: inline-flex; align-items: center;
+  color: var(--color-text-tertiary);
+  transition: color .15s;
+}
+.engine-btn.is-active .engine-btn__icon { color: var(--brand); }
+.engine-btn__icon svg { display: block; }
+
+@media (max-width: 640px) {
+  .engine-btn { padding: 6px 11px; }
+}
+
+/* ============================================================
+   섹션 이동 메뉴
+   ============================================================ */
+.secnav {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; gap: 4px; flex-wrap: wrap;
+  padding: 10px 0; margin-bottom: var(--space-2);
+  background: linear-gradient(var(--color-bg, #F7F9FC) 78%, transparent);
+  backdrop-filter: blur(6px);
+}
+.secnav__item {
+  font-family: inherit; font-size: var(--text-xs); font-weight: 600;
+  color: var(--color-text-secondary); background: #fff;
+  border: 1px solid var(--color-border); border-radius: 999px;
+  padding: 6px 13px; cursor: pointer; white-space: nowrap;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.secnav__item:hover {
+  color: var(--color-text-primary); border-color: #AEBACB; background: #F4F7FB;
+}
+
+/* ============================================================
+   상품군별 성과
+   ============================================================ */
+.cat-toolbar {
+  display: flex; gap: var(--space-3); flex-wrap: wrap;
+  margin-bottom: var(--space-4);
+}
+.cat-switch {
+  display: inline-flex; gap: 3px; padding: 3px;
+  background: var(--color-bg-subtle, #EDF1F7);
+  border: 1px solid var(--color-border); border-radius: 999px;
+}
+.cat-btn {
+  font-family: inherit; font-size: var(--text-xs); font-weight: 600;
+  color: var(--color-text-tertiary); background: transparent;
+  border: 0; border-radius: 999px; padding: 5px 14px; cursor: pointer;
+  transition: background .15s, color .15s, box-shadow .15s; white-space: nowrap;
+}
+.cat-btn:hover { color: var(--color-text-secondary); }
+.cat-btn.is-active {
+  background: #fff; color: var(--color-text-primary);
+  box-shadow: 0 1px 3px rgba(26,32,44,.16);
+}
+
+.cat-table th, .cat-table td { padding: 7px 10px; }
+.cat-table th.th--focus { background: #FFF6DC; }
+.cat-table td.td--focus { background: #FFFBEF; }
+.cat-name { font-weight: 700; color: var(--color-text-primary); white-space: nowrap; }
+.cat-row--c td { border-top: 0; }
+.cat-m { color: var(--color-text-primary); }
+.cat-c { color: var(--color-text-secondary); font-size: var(--text-xs); }
+.cat-cnt {
+  display: inline-block; margin-left: 4px;
+  font-size: 0.6875rem; color: var(--color-text-tertiary);
+  font-variant-numeric: tabular-nums;
+}
+.cat-total td {
+  background: #F4F7FB; font-weight: 700;
+  border-top: 1.5px solid var(--color-border);
+}
+.cat-total.cat-row--c td { border-top: 0; font-weight: 600; }
+
+.cat-rest { margin-top: var(--space-4); }
+.cat-rest > summary {
+  cursor: pointer; font-size: var(--text-xs); font-weight: 600;
+  color: var(--color-text-secondary); padding: 8px 0;
+}
+.cat-rest__hint {
+  font-weight: 400; color: var(--color-text-tertiary); margin-left: 8px;
+}
+
 </style>
   <script>
 /*!
@@ -1372,6 +1479,9 @@ body {
       <div class="insight__items" id="insight-items"><!-- JS가 채움 --></div>
       <div class="insight__delta" id="insight-delta"><!-- JS가 채움 --></div>
     </section>
+
+    <!-- ===== 섹션 이동 메뉴 ===== -->
+    <nav class="secnav" id="secnav"><!-- JS가 채움 --></nav>
 
     <!-- ===== Section 1: 종합 GEO Index (브랜드 제외) ===== -->
     <section class="section" id="section-summary">
@@ -1426,6 +1536,18 @@ body {
       <div class="cards-grid cards-grid--2col" id="type-cards">
         <!-- JS가 채움 -->
       </div>
+    </section>
+
+    <!-- ===== Section 2-2: 상품군별 성과 ===== -->
+    <section class="section" id="section-category">
+      <div class="section__header">
+        <div class="section__icon">📦</div>
+        <h2 class="section__title">상품군별 성과</h2>
+        <span class="section__subtitle" id="category-subtitle">비교추천 · 통합 기준</span>
+      </div>
+
+      <div class="cat-toolbar" id="category-toolbar"><!-- JS가 채움 --></div>
+      <div id="category-body"><!-- JS가 채움 --></div>
     </section>
 
     <!-- ===== Section 3: Mention vs Citation 상세 ===== -->
@@ -1537,11 +1659,20 @@ body {
 // Auto-generated by build_dashboard.py — DO NOT EDIT
 const GEO_DATA = {
   "latest_key": "gpt-5.6-luna|2026-10-26",
+  "default_model": "gpt-5.6-luna",
   "models": [
+    "claude-sonnet-5",
     "gpt-5.6",
     "gpt-5.6-luna"
   ],
   "entries": [
+    {
+      "key": "claude-sonnet-5|2026-10-27",
+      "model": "claude-sonnet-5",
+      "date": "2026-10-27",
+      "label": "2026-10-27",
+      "records": 661
+    },
     {
       "key": "gpt-5.6|2026-08-13",
       "model": "gpt-5.6",
@@ -3600,30 +3731,15 @@ const GEO_DATA = {
         "items": [
           {
             "icon": "📋",
-            "title": "이번 회차에 달라진 점",
-            "text": "질문을 130개에서 288개로 바꿨습니다. 채점 대상 중 <b>정보성 비중이 늘었습니다</b>(48%→71%). 정보성은 AI가 보험사 이름을 잘 꺼내지 않는 영역이라 어느 회사든 점수가 낮게 나옵니다. 이번 회차는 <b>1개사가 오르고 4개사가 내렸습니다.</b> <b>질문이 달라졌으므로 회차 간 총점을 그대로 비교하면 안 됩니다.</b>"
-          },
-          {
-            "icon": "🧮",
-            "title": "총점 변화를 그대로 실력 변화로 보면 안 됩니다",
-            "text": "아래 카드에서 KB손해보험은 <b>47.5 → 46.8 (-0.7)</b>입니다. 다만 이 숫자에는 질문이 바뀐 영향이 섞여 있습니다. <b>2026-08-18과 2026-09-18에 똑같이 들어 있던 질문 95개만</b> 골라 다시 계산하면 <b>+1.2점</b>입니다. 두 숫자의 방향이 달라, <b>총점 상승분은 질문 구성 변화에서 온 것</b>으로 보입니다."
-          },
-          {
-            "icon": "🏅",
-            "title": "KB손해보험은 제자리인데 순위만 올랐습니다",
-            "text": "KB손해보험 순위는 4위에서 3위가 됐지만, 자사가 인용된 답변 수는 31건에서 29건으로 거의 그대로입니다. 순위가 바뀐 진짜 이유는 <b>DB손해보험의 하락</b>입니다(48.7→33.7). DB손해보험은 AI 답변에서 자사 자료가 인용된 횟수가 28건에서 16건으로 43% 줄었습니다. 인용되는 자사 사이트 종류도 10개에서 7개로 좁아졌습니다 — 몇몇 페이지에만 인용이 몰리면 그 페이지가 검색에서 밀릴 때 한꺼번에 빠집니다. 다만 직전 회차에 DB손해보험과 1.2점 차 <b>사실상 동점</b>이었으므로, 순위보다 점수 추이로 보시는 편이 안전합니다."
-          },
-          {
-            "icon": "🎯",
-            "title": "다음에 손볼 곳",
-            "text": "질문이 많으면서 경쟁사와 벌어진 상품은 <b>자동차·운전자</b>입니다. 답변 196건 중 자사 자료가 인용된 비율이 14%로, 삼성화재(22%)에 뒤집니다. 그다음은 <b>건강</b>입니다 (답변 68건 · 자사 7% vs 삼성화재 19%). 질문 수가 많은 상품일수록 총점을 크게 움직입니다."
+            "title": "이번 회차 문항 변경",
+            "text": "전체 문항 <b>130 → 288개</b> (비교추천 55→70 · 정보성 50→175). 2026-08-18과 2026-09-18에 공통으로 들어간 문항은 <b>95개</b>입니다. 새로 생긴 구분: <b>가입·계약, 건강, 브랜드 추천, 브랜드이미지, 소비자 평가, 신뢰·안정성, 일상생활배상, 자녀·태아, 자동차·운전자, 주택화재, 청구·보상, 회사정보</b>. 빠진 구분: 회사정보·신뢰."
           }
         ]
       }
     },
     "gpt-5.6-luna|2026-10-26": {
       "meta": {
-        "generated_at": "2026-10-26 17:35",
+        "generated_at": "2026-11-02 16:32",
         "model": "gpt-5.6-luna",
         "judge_model": "gpt-5-mini",
         "runs": 2,
@@ -4686,6 +4802,1065 @@ const GEO_DATA = {
           "example_url": "https://m.directdb.co.kr/comm/bnf/evt/atarcDstTtyView.do?pageDvn=babyInCar&utm_source=openai"
         }
       ],
+      "by_category": {
+        "비교추천": {
+          "rollup": [
+            {
+              "cat": "건강",
+              "q": 52,
+              "n": 104,
+              "m": [
+                55,
+                54,
+                43,
+                43,
+                39
+              ],
+              "c": [
+                25,
+                35,
+                24,
+                12,
+                16
+              ]
+            },
+            {
+              "cat": "자동차",
+              "q": 23,
+              "n": 46,
+              "m": [
+                42,
+                42,
+                40,
+                40,
+                19
+              ],
+              "c": [
+                18,
+                27,
+                20,
+                13,
+                5
+              ]
+            },
+            {
+              "cat": "운전자",
+              "q": 7,
+              "n": 14,
+              "m": [
+                10,
+                13,
+                13,
+                9,
+                5
+              ],
+              "c": [
+                5,
+                9,
+                8,
+                5,
+                3
+              ]
+            },
+            {
+              "cat": "실손",
+              "q": 7,
+              "n": 14,
+              "m": [
+                6,
+                7,
+                7,
+                7,
+                6
+              ],
+              "c": [
+                1,
+                1,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "cat": "펫",
+              "q": 6,
+              "n": 12,
+              "m": [
+                8,
+                4,
+                11,
+                7,
+                9
+              ],
+              "c": [
+                8,
+                2,
+                8,
+                5,
+                8
+              ]
+            },
+            {
+              "cat": "일반",
+              "q": 6,
+              "n": 12,
+              "m": [
+                12,
+                12,
+                11,
+                12,
+                8
+              ],
+              "c": [
+                7,
+                7,
+                5,
+                3,
+                1
+              ]
+            },
+            {
+              "cat": "여행",
+              "q": 5,
+              "n": 10,
+              "m": [
+                5,
+                10,
+                9,
+                5,
+                1
+              ],
+              "c": [
+                2,
+                9,
+                5,
+                2,
+                0
+              ]
+            },
+            {
+              "cat": "자녀",
+              "q": 4,
+              "n": 8,
+              "m": [
+                6,
+                6,
+                6,
+                6,
+                4
+              ],
+              "c": [
+                4,
+                3,
+                4,
+                0,
+                2
+              ]
+            },
+            {
+              "cat": "주택화재",
+              "q": 3,
+              "n": 6,
+              "m": [
+                6,
+                6,
+                6,
+                5,
+                4
+              ],
+              "c": [
+                2,
+                4,
+                2,
+                1,
+                1
+              ]
+            },
+            {
+              "cat": "기타",
+              "q": 2,
+              "n": 4,
+              "m": [
+                2,
+                2,
+                2,
+                2,
+                2
+              ],
+              "c": [
+                1,
+                1,
+                1,
+                0,
+                0
+              ]
+            },
+            {
+              "cat": "치아",
+              "q": 1,
+              "n": 2,
+              "m": [
+                2,
+                2,
+                2,
+                2,
+                2
+              ],
+              "c": [
+                1,
+                2,
+                1,
+                2,
+                2
+              ]
+            }
+          ],
+          "raw": [
+            {
+              "cat": "자동차",
+              "q": 23,
+              "n": 46,
+              "m": [
+                42,
+                42,
+                40,
+                40,
+                19
+              ],
+              "c": [
+                18,
+                27,
+                20,
+                13,
+                5
+              ]
+            },
+            {
+              "cat": "건강(간병)",
+              "q": 12,
+              "n": 24,
+              "m": [
+                16,
+                10,
+                7,
+                10,
+                4
+              ],
+              "c": [
+                7,
+                4,
+                3,
+                1,
+                0
+              ]
+            },
+            {
+              "cat": "건강(유병자)",
+              "q": 12,
+              "n": 24,
+              "m": [
+                15,
+                18,
+                10,
+                11,
+                12
+              ],
+              "c": [
+                9,
+                16,
+                9,
+                6,
+                8
+              ]
+            },
+            {
+              "cat": "건강(실손)",
+              "q": 12,
+              "n": 24,
+              "m": [
+                15,
+                15,
+                15,
+                14,
+                14
+              ],
+              "c": [
+                6,
+                8,
+                7,
+                3,
+                4
+              ]
+            },
+            {
+              "cat": "건강(암)",
+              "q": 9,
+              "n": 18,
+              "m": [
+                3,
+                3,
+                4,
+                1,
+                3
+              ],
+              "c": [
+                2,
+                4,
+                3,
+                0,
+                3
+              ]
+            },
+            {
+              "cat": "운전자",
+              "q": 7,
+              "n": 14,
+              "m": [
+                10,
+                13,
+                13,
+                9,
+                5
+              ],
+              "c": [
+                5,
+                9,
+                8,
+                5,
+                3
+              ]
+            },
+            {
+              "cat": "실손",
+              "q": 7,
+              "n": 14,
+              "m": [
+                6,
+                7,
+                7,
+                7,
+                6
+              ],
+              "c": [
+                1,
+                1,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "cat": "건강",
+              "q": 7,
+              "n": 14,
+              "m": [
+                6,
+                8,
+                7,
+                7,
+                6
+              ],
+              "c": [
+                1,
+                3,
+                2,
+                2,
+                1
+              ]
+            },
+            {
+              "cat": "펫",
+              "q": 6,
+              "n": 12,
+              "m": [
+                8,
+                4,
+                11,
+                7,
+                9
+              ],
+              "c": [
+                8,
+                2,
+                8,
+                5,
+                8
+              ]
+            },
+            {
+              "cat": "일반",
+              "q": 6,
+              "n": 12,
+              "m": [
+                12,
+                12,
+                11,
+                12,
+                8
+              ],
+              "c": [
+                7,
+                7,
+                5,
+                3,
+                1
+              ]
+            },
+            {
+              "cat": "여행",
+              "q": 5,
+              "n": 10,
+              "m": [
+                5,
+                10,
+                9,
+                5,
+                1
+              ],
+              "c": [
+                2,
+                9,
+                5,
+                2,
+                0
+              ]
+            },
+            {
+              "cat": "자녀·가족",
+              "q": 3,
+              "n": 6,
+              "m": [
+                4,
+                4,
+                4,
+                4,
+                3
+              ],
+              "c": [
+                2,
+                2,
+                2,
+                0,
+                1
+              ]
+            },
+            {
+              "cat": "주택화재",
+              "q": 3,
+              "n": 6,
+              "m": [
+                6,
+                6,
+                6,
+                5,
+                4
+              ],
+              "c": [
+                2,
+                4,
+                2,
+                1,
+                1
+              ]
+            },
+            {
+              "cat": "기타",
+              "q": 2,
+              "n": 4,
+              "m": [
+                2,
+                2,
+                2,
+                2,
+                2
+              ],
+              "c": [
+                1,
+                1,
+                1,
+                0,
+                0
+              ]
+            },
+            {
+              "cat": "치아",
+              "q": 1,
+              "n": 2,
+              "m": [
+                2,
+                2,
+                2,
+                2,
+                2
+              ],
+              "c": [
+                1,
+                2,
+                1,
+                2,
+                2
+              ]
+            },
+            {
+              "cat": "자녀",
+              "q": 1,
+              "n": 2,
+              "m": [
+                2,
+                2,
+                2,
+                2,
+                1
+              ],
+              "c": [
+                2,
+                1,
+                2,
+                0,
+                1
+              ]
+            }
+          ]
+        },
+        "정보성": {
+          "rollup": [
+            {
+              "cat": "자동차",
+              "q": 86,
+              "n": 172,
+              "m": [
+                20,
+                28,
+                19,
+                14,
+                4
+              ],
+              "c": [
+                23,
+                46,
+                18,
+                15,
+                1
+              ]
+            },
+            {
+              "cat": "건강",
+              "q": 28,
+              "n": 56,
+              "m": [
+                3,
+                1,
+                0,
+                0,
+                0
+              ],
+              "c": [
+                8,
+                14,
+                3,
+                0,
+                1
+              ]
+            },
+            {
+              "cat": "운전자",
+              "q": 13,
+              "n": 26,
+              "m": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "c": [
+                0,
+                8,
+                0,
+                3,
+                0
+              ]
+            },
+            {
+              "cat": "실손",
+              "q": 13,
+              "n": 26,
+              "m": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "c": [
+                1,
+                5,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "cat": "펫",
+              "q": 13,
+              "n": 26,
+              "m": [
+                2,
+                3,
+                2,
+                1,
+                3
+              ],
+              "c": [
+                3,
+                4,
+                3,
+                3,
+                4
+              ]
+            },
+            {
+              "cat": "가입·계약",
+              "q": 13,
+              "n": 26,
+              "m": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "c": [
+                0,
+                6,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "cat": "주택화재",
+              "q": 9,
+              "n": 18,
+              "m": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "c": [
+                1,
+                1,
+                2,
+                1,
+                0
+              ]
+            },
+            {
+              "cat": "일상생활배상",
+              "q": 4,
+              "n": 8,
+              "m": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "c": [
+                0,
+                1,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "cat": "여행",
+              "q": 3,
+              "n": 6,
+              "m": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "c": [
+                0,
+                1,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "cat": "오토바이운전자",
+              "q": 3,
+              "n": 6,
+              "m": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "c": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "cat": "자녀·태아",
+              "q": 2,
+              "n": 4,
+              "m": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "c": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "cat": "치아",
+              "q": 2,
+              "n": 4,
+              "m": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "c": [
+                0,
+                1,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "cat": "청구·보상",
+              "q": 2,
+              "n": 4,
+              "m": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "c": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "cat": "자녀",
+              "q": 2,
+              "n": 4,
+              "m": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "c": [
+                1,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "raw": [
+            {
+              "cat": "자동차",
+              "q": 86,
+              "n": 172,
+              "m": [
+                20,
+                28,
+                19,
+                14,
+                4
+              ],
+              "c": [
+                23,
+                46,
+                18,
+                15,
+                1
+              ]
+            },
+            {
+              "cat": "건강",
+              "q": 28,
+              "n": 56,
+              "m": [
+                3,
+                1,
+                0,
+                0,
+                0
+              ],
+              "c": [
+                8,
+                14,
+                3,
+                0,
+                1
+              ]
+            },
+            {
+              "cat": "운전자",
+              "q": 13,
+              "n": 26,
+              "m": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "c": [
+                0,
+                8,
+                0,
+                3,
+                0
+              ]
+            },
+            {
+              "cat": "실손",
+              "q": 13,
+              "n": 26,
+              "m": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "c": [
+                1,
+                5,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "cat": "펫",
+              "q": 13,
+              "n": 26,
+              "m": [
+                2,
+                3,
+                2,
+                1,
+                3
+              ],
+              "c": [
+                3,
+                4,
+                3,
+                3,
+                4
+              ]
+            },
+            {
+              "cat": "가입·계약",
+              "q": 13,
+              "n": 26,
+              "m": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "c": [
+                0,
+                6,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "cat": "주택화재",
+              "q": 9,
+              "n": 18,
+              "m": [
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              "c": [
+                1,
+                1,
+                2,
+                1,
+                0
+              ]
+            },
+            {
+              "cat": "일상생활배상",
+              "q": 4,
+              "n": 8,
+              "m": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "c": [
+                0,
+                1,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "cat": "여행",
+              "q": 3,
+              "n": 6,
+              "m": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "c": [
+                0,
+                1,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "cat": "오토바이운전자",
+              "q": 3,
+              "n": 6,
+              "m": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "c": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "cat": "자녀·태아",
+              "q": 2,
+              "n": 4,
+              "m": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "c": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "cat": "치아",
+              "q": 2,
+              "n": 4,
+              "m": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "c": [
+                0,
+                1,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "cat": "청구·보상",
+              "q": 2,
+              "n": 4,
+              "m": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "c": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "cat": "자녀",
+              "q": 2,
+              "n": 4,
+              "m": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "c": [
+                1,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ]
+        }
+      },
       "vs_prev": {
         "full_rows": [
           {
@@ -4803,26 +5978,1094 @@ const GEO_DATA = {
         "items": [
           {
             "icon": "📋",
-            "title": "이번 회차에 달라진 점",
-            "text": "질문을 288개에서 352개로 바꿨습니다. 채점 대상 중 <b>정보성 비중이 줄었습니다</b>(71%→62%). 정보성은 AI가 보험사 이름을 잘 꺼내지 않는 영역이라 어느 회사든 점수가 낮게 나옵니다. 이번 회차는 <b>4개사가 오르고 1개사가 내렸습니다.</b> <b>질문이 달라졌으므로 회차 간 총점을 그대로 비교하면 안 됩니다.</b>"
-          },
-          {
-            "icon": "🧮",
-            "title": "총점 변화를 그대로 실력 변화로 보면 안 됩니다",
-            "text": "아래 카드에서 KB손해보험은 <b>46.8 → 50.2 (+3.4)</b>입니다. 다만 이 숫자에는 질문이 바뀐 영향이 섞여 있습니다. <b>2026-09-18과 2026-10-26에 똑같이 들어 있던 질문 242개만</b> 골라 다시 계산하면 <b>-2.1점</b>입니다. 두 숫자의 방향이 달라, <b>총점 상승분은 질문 구성 변화에서 온 것</b>으로 보입니다."
-          },
-          {
-            "icon": "🏅",
-            "title": "KB손해보험은 제자리인데 순위만 올랐습니다",
-            "text": "KB손해보험 순위는 3위에서 2위가 됐지만, 자사가 인용된 답변 수는 70건에서 74건으로 거의 그대로입니다. 순위가 바뀐 진짜 이유는 <b>현대해상의 하락</b>입니다(53.9→47.6). 현대해상은 AI 답변에서 자사 자료가 인용된 횟수가 87건에서 71건으로 18% 줄었습니다. 인용되는 자사 사이트 종류도 20개에서 16개로 좁아졌습니다 — 몇몇 페이지에만 인용이 몰리면 그 페이지가 검색에서 밀릴 때 한꺼번에 빠집니다."
-          },
-          {
-            "icon": "🎯",
-            "title": "다음에 손볼 곳",
-            "text": "질문이 많으면서 경쟁사와 벌어진 상품은 <b>자동차</b>입니다. 답변 218건 중 자사 자료가 인용된 비율이 19%로, 삼성화재(33%)에 뒤집니다. 그다음은 <b>운전자</b>입니다 (답변 40건 · 자사 12% vs 삼성화재 42%). 질문 수가 많은 상품일수록 총점을 크게 움직입니다."
+            "title": "이번 회차 문항 변경",
+            "text": "전체 문항 <b>288 → 352개</b> (비교추천 70→116 · 정보성 175→193). 2026-09-18과 2026-10-26에 공통으로 들어간 문항은 <b>242개</b>입니다. 새로 생긴 구분: <b>건강(간병), 건강(실손), 건강(암), 건강(유병자), 오토바이운전자, 자녀</b>. 빠진 구분: 건강·암, 자동차·운전자."
           }
         ]
       }
+    },
+    "claude-sonnet-5|2026-10-27": {
+      "meta": {
+        "generated_at": "2026-10-28 17:40",
+        "model": "claude-sonnet-5",
+        "judge_model": "gpt-5-mini",
+        "runs": 2,
+        "total_records": 661,
+        "failed": 0,
+        "mention_scope": "exclude_brand",
+        "date": "2026-10-27"
+      },
+      "summary": [
+        {
+          "company": "삼성화재",
+          "geo_index": 63.343408,
+          "rank": 1,
+          "mention_score": 35.436893,
+          "citation_score": 27.906515,
+          "mention_rate": 41.747573,
+          "mention_sov": 24.067164,
+          "mention_rate_score": 10.436893,
+          "mention_sov_score": 25.0,
+          "mention_count": 258,
+          "mention_total": 618,
+          "citation_rate": 16.343042,
+          "citation_sov": 34.827586,
+          "citation_rate_score": 4.085761,
+          "citation_sov_score": 23.820755,
+          "citation_count": 101,
+          "citation_total": 618
+        },
+        {
+          "company": "KB손해보험",
+          "geo_index": 61.291112,
+          "rank": 2,
+          "mention_score": 32.003086,
+          "citation_score": 29.288026,
+          "mention_rate": 37.702265,
+          "mention_sov": 21.735075,
+          "mention_rate_score": 9.425566,
+          "mention_sov_score": 22.577519,
+          "mention_count": 233,
+          "mention_total": 618,
+          "citation_rate": 17.152104,
+          "citation_sov": 36.551724,
+          "citation_rate_score": 4.288026,
+          "citation_sov_score": 25.0,
+          "citation_count": 106,
+          "citation_total": 618
+        },
+        {
+          "company": "현대해상",
+          "geo_index": 44.163575,
+          "rank": 3,
+          "mention_score": 31.453677,
+          "citation_score": 12.709898,
+          "mention_rate": 37.055016,
+          "mention_sov": 21.36194,
+          "mention_rate_score": 9.263754,
+          "mention_sov_score": 22.189922,
+          "mention_count": 229,
+          "mention_total": 618,
+          "citation_rate": 7.443366,
+          "citation_sov": 15.862069,
+          "citation_rate_score": 1.860841,
+          "citation_sov_score": 10.849057,
+          "citation_count": 46,
+          "citation_total": 618
+        },
+        {
+          "company": "DB손해보험",
+          "geo_index": 37.818211,
+          "rank": 4,
+          "mention_score": 29.805449,
+          "citation_score": 8.012762,
+          "mention_rate": 35.113269,
+          "mention_sov": 20.242537,
+          "mention_rate_score": 8.778317,
+          "mention_sov_score": 21.027132,
+          "mention_count": 217,
+          "mention_total": 618,
+          "citation_rate": 4.692557,
+          "citation_sov": 10.0,
+          "citation_rate_score": 1.173139,
+          "citation_sov_score": 6.839623,
+          "citation_count": 29,
+          "citation_total": 618
+        },
+        {
+          "company": "메리츠화재",
+          "geo_index": 20.752977,
+          "rank": 5,
+          "mention_score": 18.54256,
+          "citation_score": 2.210417,
+          "mention_rate": 21.84466,
+          "mention_sov": 12.593284,
+          "mention_rate_score": 5.461165,
+          "mention_sov_score": 13.081395,
+          "mention_count": 135,
+          "mention_total": 618,
+          "citation_rate": 1.294498,
+          "citation_sov": 2.758621,
+          "citation_rate_score": 0.323625,
+          "citation_sov_score": 1.886792,
+          "citation_count": 8,
+          "citation_total": 618
+        }
+      ],
+      "by_type": {
+        "비교추천": [
+          {
+            "company": "삼성화재",
+            "geo_index": 73.922414,
+            "rank": 1,
+            "mention_score": 43.965517,
+            "citation_score": 29.956897,
+            "mention_rate": 75.862069,
+            "citation_rate": 19.827586,
+            "mention_sov": 22.44898,
+            "citation_sov": 40.0,
+            "mention_count": 176,
+            "citation_count": 46,
+            "mention_total": 232,
+            "total": 232
+          },
+          {
+            "company": "KB손해보험",
+            "geo_index": 62.36051,
+            "rank": 2,
+            "mention_score": 40.218456,
+            "citation_score": 22.142054,
+            "mention_rate": 69.396552,
+            "citation_rate": 14.655172,
+            "mention_sov": 20.535714,
+            "citation_sov": 29.565217,
+            "mention_count": 161,
+            "citation_count": 34,
+            "mention_total": 232,
+            "total": 232
+          },
+          {
+            "company": "DB손해보험",
+            "geo_index": 53.689349,
+            "rank": 3,
+            "mention_score": 41.967085,
+            "citation_score": 11.722264,
+            "mention_rate": 72.413793,
+            "citation_rate": 7.758621,
+            "mention_sov": 21.428571,
+            "citation_sov": 15.652174,
+            "mention_count": 168,
+            "citation_count": 18,
+            "mention_total": 232,
+            "total": 232
+          },
+          {
+            "company": "현대해상",
+            "geo_index": 46.980629,
+            "rank": 4,
+            "mention_score": 40.46826,
+            "citation_score": 6.512369,
+            "mention_rate": 69.827586,
+            "citation_rate": 4.310345,
+            "mention_sov": 20.663265,
+            "citation_sov": 8.695652,
+            "mention_count": 162,
+            "citation_count": 10,
+            "mention_total": 232,
+            "total": 232
+          },
+          {
+            "company": "메리츠화재",
+            "geo_index": 33.785735,
+            "rank": 5,
+            "mention_score": 29.227077,
+            "citation_score": 4.558658,
+            "mention_rate": 50.431034,
+            "citation_rate": 3.017241,
+            "mention_sov": 14.923469,
+            "citation_sov": 6.086957,
+            "mention_count": 117,
+            "citation_count": 7,
+            "mention_total": 232,
+            "total": 232
+          }
+        ],
+        "정보성": [
+          {
+            "company": "KB손해보험",
+            "geo_index": 56.277644,
+            "rank": 1,
+            "mention_score": 26.614432,
+            "citation_score": 29.663212,
+            "mention_rate": 18.65285,
+            "citation_rate": 18.65285,
+            "mention_sov": 25.0,
+            "citation_sov": 41.142857,
+            "mention_count": 72,
+            "citation_count": 72,
+            "mention_total": 386,
+            "total": 386
+          },
+          {
+            "company": "삼성화재",
+            "geo_index": 52.970279,
+            "rank": 2,
+            "mention_score": 30.310881,
+            "citation_score": 22.659398,
+            "mention_rate": 21.243523,
+            "citation_rate": 14.248705,
+            "mention_sov": 28.472222,
+            "citation_sov": 31.428571,
+            "mention_count": 82,
+            "citation_count": 55,
+            "mention_total": 386,
+            "total": 386
+          },
+          {
+            "company": "현대해상",
+            "geo_index": 39.597814,
+            "rank": 3,
+            "mention_score": 24.766208,
+            "citation_score": 14.831606,
+            "mention_rate": 17.357513,
+            "citation_rate": 9.326425,
+            "mention_sov": 23.263889,
+            "citation_sov": 20.571429,
+            "mention_count": 67,
+            "citation_count": 36,
+            "mention_total": 386,
+            "total": 386
+          },
+          {
+            "company": "DB손해보험",
+            "geo_index": 22.644479,
+            "rank": 4,
+            "mention_score": 18.1126,
+            "citation_score": 4.53188,
+            "mention_rate": 12.694301,
+            "citation_rate": 2.849741,
+            "mention_sov": 17.013889,
+            "citation_sov": 6.285714,
+            "mention_count": 49,
+            "citation_count": 11,
+            "mention_total": 386,
+            "total": 386
+          },
+          {
+            "company": "메리츠화재",
+            "geo_index": 7.065597,
+            "rank": 5,
+            "mention_score": 6.653608,
+            "citation_score": 0.411989,
+            "mention_rate": 4.663212,
+            "citation_rate": 0.259067,
+            "mention_sov": 6.25,
+            "citation_sov": 0.571429,
+            "mention_count": 18,
+            "citation_count": 1,
+            "mention_total": 386,
+            "total": 386
+          }
+        ]
+      },
+      "brand": {
+        "type": "브랜드-정보",
+        "companies": [],
+        "company": "KB손해보험",
+        "total_answers": 22,
+        "total_questions": 22,
+        "mention_judged": false,
+        "mention_rate": null,
+        "mention_count": null,
+        "citation_rate": 72.727273,
+        "citation_count": 16,
+        "citation_sov": 100.0,
+        "questions": [
+          {
+            "question_id": "BI-01",
+            "question": "KB손해보험 고객센터 전화번호가 뭐야?",
+            "runs": 1,
+            "mention_hits": 0,
+            "citation_hits": 0,
+            "urls": []
+          },
+          {
+            "question_id": "BI-02",
+            "question": "KB손해보험 고객센터 운영시간 알려줘",
+            "runs": 1,
+            "mention_hits": 0,
+            "citation_hits": 0,
+            "urls": []
+          },
+          {
+            "question_id": "BI-03",
+            "question": "KB손해보험 상담원 바로 연결하려면 어떻게 해?",
+            "runs": 1,
+            "mention_hits": 0,
+            "citation_hits": 0,
+            "urls": []
+          },
+          {
+            "question_id": "BI-04",
+            "question": "KB손해보험 본사는 어디에 있어?",
+            "runs": 1,
+            "mention_hits": 0,
+            "citation_hits": 1,
+            "urls": [
+              "http://www.kbinsure.co.kr/CU601040001.ec"
+            ]
+          },
+          {
+            "question_id": "BI-05",
+            "question": "KB손해보험 보험 가입 시 할인 받으려면 어떻게 해야해 ?",
+            "runs": 1,
+            "mention_hits": 0,
+            "citation_hits": 1,
+            "urls": [
+              "https://m.kb-direct.co.kr/",
+              "https://mdirect.kbinsure.co.kr/mobiapp/views/car/lms/CDW_MOBI_CAR_LMS.html",
+              "http://direct.kbcarinsure.co.kr/new/",
+              "http://www.kbinsure.co.kr/CG301060001.ec",
+              "https://www.kbinsure.co.kr/CG301100001.ec",
+              "http://direct.kbcarinsure.co.kr/seo/",
+              "https://www.kbinsure.co.kr/CG302090001.ec"
+            ]
+          },
+          {
+            "question_id": "BI-06",
+            "question": "KB손해보험 다이렉트 보험 가입 상담 번호는 ?",
+            "runs": 1,
+            "mention_hits": 0,
+            "citation_hits": 1,
+            "urls": [
+              "https://direct.kbinsure.co.kr/"
+            ]
+          },
+          {
+            "question_id": "BI-07",
+            "question": "KB손해보험 보험금 청구는 어떻게 해?",
+            "runs": 1,
+            "mention_hits": 0,
+            "citation_hits": 1,
+            "urls": [
+              "https://apps.apple.com/KR/app/id1445130863",
+              "https://www.kbinsure.co.kr/images/claim_svc/reqdoc_genal.pdf",
+              "https://www.kbinsure.co.kr/CG212010002.ec",
+              "https://www.kbinsure.co.kr/CG205010001.ec",
+              "https://www.kbinsure.co.kr/CG205020005.ec",
+              "http://www.kbinsure.co.kr/CG206020001.ec",
+              "http://www.kbinsure.co.kr/CG205020004.ec",
+              "http://www.kbinsure.co.kr/CG205010002.ec"
+            ]
+          },
+          {
+            "question_id": "BI-08",
+            "question": "KB손해보험 앱으로 보험금 청구하려면 어떻게 해?",
+            "runs": 1,
+            "mention_hits": 0,
+            "citation_hits": 1,
+            "urls": [
+              "https://insight.kbinsure.co.kr/insurance-claim-process/",
+              "https://www.kbinsure.co.kr/CG212010002.ec"
+            ]
+          },
+          {
+            "question_id": "BI-09",
+            "question": "KB손해보험 보험금 청구할 때 서류 뭐 필요해?",
+            "runs": 1,
+            "mention_hits": 0,
+            "citation_hits": 1,
+            "urls": [
+              "https://www.kbinsure.co.kr/CG205020001.ec",
+              "http://www.kbinsure.co.kr/CG205020004.ec",
+              "https://www.kbinsure.co.kr/CG205020005.ec",
+              "http://www.kbinsure.co.kr/CG205020007.ec",
+              "http://www.kbinsure.co.kr/CG206020001.ec",
+              "https://www.kbinsure.co.kr/CG205010001.ec"
+            ]
+          },
+          {
+            "question_id": "BI-10",
+            "question": "KB손해보험 보험금은 청구하면 며칠 만에 나와?",
+            "runs": 1,
+            "mention_hits": 0,
+            "citation_hits": 1,
+            "urls": [
+              "http://www.kbinsure.co.kr/CG205010002.ec"
+            ]
+          },
+          {
+            "question_id": "BI-11",
+            "question": "KB손해보험 보험금 지급이 거절되면 어떻게 해?",
+            "runs": 1,
+            "mention_hits": 0,
+            "citation_hits": 1,
+            "urls": [
+              "https://www.kbinsure.co.kr/images/claim_svc/reqdoc_genal.pdf"
+            ]
+          },
+          {
+            "question_id": "BI-12",
+            "question": "KB손해보험 자동차 사고 나면 어떻게 접수해?",
+            "runs": 1,
+            "mention_hits": 0,
+            "citation_hits": 1,
+            "urls": [
+              "http://www.kbinsure.co.kr/CG208030004.ec",
+              "https://www.kbinsure.co.kr/CG212020001.ecs",
+              "http://www.kbinsure.co.kr/CC101080007.ec",
+              "https://www.kbinsure.co.kr/CG212020003.ecs"
+            ]
+          },
+          {
+            "question_id": "BI-13",
+            "question": "KB손해보험 긴급출동 서비스 어떻게 불러?",
+            "runs": 1,
+            "mention_hits": 0,
+            "citation_hits": 1,
+            "urls": [
+              "https://www.kbinsure.co.kr/CG605030001.ec?mdmn=0301",
+              "https://www.kbinsure.co.kr/CG211010001.ec",
+              "https://insight.kbinsure.co.kr/emergency-roadside-service/"
+            ]
+          },
+          {
+            "question_id": "BI-14",
+            "question": "KB손해보험 사고 접수 후 진행상황 어떻게 확인해?",
+            "runs": 1,
+            "mention_hits": 0,
+            "citation_hits": 1,
+            "urls": [
+              "https://www.kbinsure.co.kr/CC101080010.ec",
+              "https://www.kbinsure.co.kr/CG212030016.ec",
+              "https://www.kbinsure.co.kr/CG212010002.ec",
+              "https://www.kbinsure.co.kr/CG605030001.ec"
+            ]
+          },
+          {
+            "question_id": "BI-15",
+            "question": "KB손해보험 내 보험 계약 내용 어디서 조회해?",
+            "runs": 1,
+            "mention_hits": 0,
+            "citation_hits": 0,
+            "urls": []
+          },
+          {
+            "question_id": "BI-16",
+            "question": "KB손해보험 보험 증권 어디서 확인해?",
+            "runs": 1,
+            "mention_hits": 0,
+            "citation_hits": 1,
+            "urls": [
+              "https://www.kbinsure.co.kr/CG108010001.ec?go=reissue",
+              "https://www.kbinsure.co.kr/CG101010001.ec"
+            ]
+          },
+          {
+            "question_id": "BI-17",
+            "question": "KB손해보험 보험료 카드로 낼 수 있어?",
+            "runs": 1,
+            "mention_hits": 0,
+            "citation_hits": 1,
+            "urls": [
+              "http://direct.kbcarinsure.co.kr/new/",
+              "https://www.kbinsure.co.kr/CG103020006.ec",
+              "http://kbinsure.co.kr/CG105030008.ec"
+            ]
+          },
+          {
+            "question_id": "BI-18",
+            "question": "KB손해보험 보험료 자동이체 신청 어떻게 해?",
+            "runs": 1,
+            "mention_hits": 0,
+            "citation_hits": 1,
+            "urls": [
+              "http://kbinsure.co.kr/CG103060007.ec",
+              "http://www.kbinsure.co.kr/CG612020001.ec",
+              "https://www.kbinsure.co.kr/CG605030001.ec",
+              "https://www.kbinsure.co.kr/CG103110001.ec",
+              "https://www.kbinsure.co.kr/CG105020007.ec"
+            ]
+          },
+          {
+            "question_id": "BI-19",
+            "question": "KB손해보험 자동차보험 갱신 어떻게 해?",
+            "runs": 1,
+            "mention_hits": 0,
+            "citation_hits": 1,
+            "urls": [
+              "https://direct.kbinsure.co.kr/",
+              "https://apps.apple.com/KR/app/id1445130863",
+              "https://apps.apple.com/kr/app/kb%EC%86%90%ED%95%B4%EB%B3%B4%ED%97%98-%EA%B3%B5%EC%8B%9D%EC%95%B1-%EB%8C%80%ED%91%9C-%EB%8B%A4%EC%9D%B4%EB%A0%89%ED%8A%B8-%ED%86%B5%ED%95%A9/id1445130863",
+              "https://www.kbinsure.co.kr/CG301010012.ec",
+              "https://mdirect.kbinsure.co.kr/mobiapp/views/car/lms/CDW_MOBI_CAR_LMS.html",
+              "https://m.kb-direct.co.kr/"
+            ]
+          },
+          {
+            "question_id": "BI-20",
+            "question": "KB손해보험 보험 해지하려면 어떻게 해?",
+            "runs": 1,
+            "mention_hits": 0,
+            "citation_hits": 1,
+            "urls": [
+              "https://www.kbinsure.co.kr/CG602010001.ec",
+              "https://www.kbinsure.co.kr/CG104010008.ec",
+              "http://www.kbinsure.co.kr/CG104030007.ec",
+              "http://www.kbinsure.co.kr/CC101080014.ec"
+            ]
+          },
+          {
+            "question_id": "BI-21",
+            "question": "KB손해보험 해지환급금 조회는 어떻게 해?",
+            "runs": 1,
+            "mention_hits": 0,
+            "citation_hits": 0,
+            "urls": []
+          },
+          {
+            "question_id": "BI-22",
+            "question": "KB손해보험 자동차보험 마일리지 환급은 어떻게 받아?",
+            "runs": 1,
+            "mention_hits": 0,
+            "citation_hits": 0,
+            "urls": []
+          }
+        ]
+      },
+      "brand_rep": {
+        "type": "브랜드-평판",
+        "companies": [
+          {
+            "company": "KB손해보험",
+            "rank": 1,
+            "mention_rate": 100.0,
+            "mention_count": 21,
+            "mention_sov": 23.333333,
+            "citation_rate": 52.380952,
+            "citation_count": 11,
+            "citation_sov": 47.826087
+          },
+          {
+            "company": "현대해상",
+            "rank": 2,
+            "mention_rate": 85.714286,
+            "mention_count": 18,
+            "mention_sov": 20.0,
+            "citation_rate": 47.619048,
+            "citation_count": 10,
+            "citation_sov": 43.478261
+          },
+          {
+            "company": "삼성화재",
+            "rank": 3,
+            "mention_rate": 90.47619,
+            "mention_count": 19,
+            "mention_sov": 21.111111,
+            "citation_rate": 4.761905,
+            "citation_count": 1,
+            "citation_sov": 4.347826
+          },
+          {
+            "company": "DB손해보험",
+            "rank": 4,
+            "mention_rate": 90.47619,
+            "mention_count": 19,
+            "mention_sov": 21.111111,
+            "citation_rate": 0.0,
+            "citation_count": 0,
+            "citation_sov": 0.0
+          },
+          {
+            "company": "메리츠화재",
+            "rank": 5,
+            "mention_rate": 61.904762,
+            "mention_count": 13,
+            "mention_sov": 14.444444,
+            "citation_rate": 4.761905,
+            "citation_count": 1,
+            "citation_sov": 4.347826
+          }
+        ],
+        "company": "KB손해보험",
+        "total_answers": 21,
+        "total_questions": 21,
+        "mention_judged": true,
+        "mention_rate": 100.0,
+        "mention_count": 21,
+        "citation_rate": 52.380952,
+        "citation_count": 11,
+        "citation_sov": 47.826087,
+        "questions": [
+          {
+            "question_id": "BP-01",
+            "question": "KB손해보험 믿을 만한 회사야?",
+            "runs": 1,
+            "mention_hits": 1,
+            "citation_hits": 1,
+            "urls": [
+              "https://www.asiatoday.co.kr/kn/view.php?key=20261007010001770",
+              "https://apps.apple.com/kr/app/kb%EC%86%90%ED%95%B4%EB%B3%B4%ED%97%98-%EA%B3%B5%EC%8B%9D%EC%95%B1-%EB%8C%80%ED%91%9C-%EB%8B%A4%EC%9D%B4%EB%A0%89%ED%8A%B8-%ED%86%B5%ED%95%A9/id1445130863"
+            ]
+          },
+          {
+            "question_id": "BP-02",
+            "question": "KB손해보험 재무건전성 괜찮아? 안전한 회사야?",
+            "runs": 1,
+            "mention_hits": 1,
+            "citation_hits": 1,
+            "urls": [
+              "https://www.junggi.co.kr/news/articleView.html?idxno=37804",
+              "https://www.joongangenews.com/news/articleView.html?idxno=514358"
+            ]
+          },
+          {
+            "question_id": "BP-03",
+            "question": "국내 주요 손해보험사 중에서 제일 믿을만한 곳은 어디야?",
+            "runs": 1,
+            "mention_hits": 1,
+            "citation_hits": 0,
+            "urls": []
+          },
+          {
+            "question_id": "BP-04",
+            "question": "삼성화재, 현대해상, DB손해보험, KB손해보험 중에서 어디가 제일 믿을만 해?",
+            "runs": 1,
+            "mention_hits": 1,
+            "citation_hits": 0,
+            "urls": []
+          },
+          {
+            "question_id": "BP-05",
+            "question": "KB손해보험 자동차보험도 괜찮은 편이야?",
+            "runs": 1,
+            "mention_hits": 1,
+            "citation_hits": 1,
+            "urls": [
+              "https://direct.kbinsure.co.kr/"
+            ]
+          },
+          {
+            "question_id": "BP-06",
+            "question": "KB손해보험은 어떤 회사야?",
+            "runs": 1,
+            "mention_hits": 1,
+            "citation_hits": 1,
+            "urls": [
+              "https://www.kbinsure.co.kr/CU600000001.ec"
+            ]
+          },
+          {
+            "question_id": "BP-07",
+            "question": "KB손해보험 기업 문화는 어떤 편이야?",
+            "runs": 1,
+            "mention_hits": 1,
+            "citation_hits": 1,
+            "urls": [
+              "https://mbiz.heraldcorp.com/article/10518232?sec=002",
+              "https://biz.heraldcorp.com/article/10488974"
+            ]
+          },
+          {
+            "question_id": "BP-08",
+            "question": "국내 주요 손해보험사들의 브랜드 이미지는 어디가 제일 좋아?",
+            "runs": 1,
+            "mention_hits": 1,
+            "citation_hits": 0,
+            "urls": []
+          },
+          {
+            "question_id": "BP-09",
+            "question": "삼성화재, 현대해상, DB손해보험, KB손해보험 중 브랜드 이미지가 가장 좋은 곳은 어디야?",
+            "runs": 1,
+            "mention_hits": 1,
+            "citation_hits": 0,
+            "urls": []
+          },
+          {
+            "question_id": "BP-10",
+            "question": "KB손해보험이 다른 보험사에 비해 좋은 점은 뭐야?",
+            "runs": 1,
+            "mention_hits": 1,
+            "citation_hits": 1,
+            "urls": [
+              "https://direct.kbinsure.co.kr/",
+              "https://www.kbinsure.co.kr/CG301010002.ec",
+              "https://www.kbinsure.co.kr/CG302290001.ec",
+              "https://www.etnews.com/20250922000089",
+              "https://www.safetimes.co.kr/news/articleView.html?idxno=240578"
+            ]
+          },
+          {
+            "question_id": "BP-11",
+            "question": "KB손해보험은 다른 손해보험사와 비교했을 때 어떤 차이가 있어?",
+            "runs": 1,
+            "mention_hits": 1,
+            "citation_hits": 1,
+            "urls": [
+              "https://www.mt.co.kr/finance/2025/03/04/2025030415130321154",
+              "https://www.startuptoday.co.kr/news/articleView.html?idxno=350629"
+            ]
+          },
+          {
+            "question_id": "BP-12",
+            "question": "KB손해보험에 대한 고객 평가는 어떤 편이야?",
+            "runs": 1,
+            "mention_hits": 1,
+            "citation_hits": 1,
+            "urls": [
+              "https://news.nate.com/view/20250714n07344",
+              "https://apps.apple.com/kr/app/kb%EC%86%90%ED%95%B4%EB%B3%B4%ED%97%98-%EA%B3%B5%EC%8B%9D%EC%95%B1-%EB%8C%80%ED%91%9C-%EB%8B%A4%EC%9D%B4%EB%A0%89%ED%8A%B8-%ED%86%B5%ED%95%A9/id1445130863",
+              "https://www.asiatoday.co.kr/kn/view.php?key=20261007010001770"
+            ]
+          },
+          {
+            "question_id": "BP-13",
+            "question": "KB손해보험의 보험금 지급과 소비자 보호에 대한 평가는 어때?",
+            "runs": 1,
+            "mention_hits": 1,
+            "citation_hits": 1,
+            "urls": [
+              "https://v.daum.net/v/20241009153112379",
+              "https://www.industrynews.co.kr/news/articleView.html?idxno=66660",
+              "https://www.safetimes.co.kr/news/articleView.html?idxno=240578",
+              "https://www.1conomynews.co.kr/news/articleView.html?idxno=48410",
+              "https://www.industrynews.co.kr/news/articleView.html?idxno=84124",
+              "https://news.tf.co.kr/read/economy/2271995.htm"
+            ]
+          },
+          {
+            "question_id": "BP-14",
+            "question": "KB손해보험의 민원이나 소비자 불만은 많은 편이야?",
+            "runs": 1,
+            "mention_hits": 1,
+            "citation_hits": 1,
+            "urls": [
+              "https://v.daum.net/v/20260306110828400"
+            ]
+          },
+          {
+            "question_id": "BP-15",
+            "question": "고객 서비스가 좋은 손해보험사는 어디야?",
+            "runs": 1,
+            "mention_hits": 1,
+            "citation_hits": 0,
+            "urls": []
+          },
+          {
+            "question_id": "BP-16",
+            "question": "삼성화재, 현대해상, DB손해보험, KB손해보험 중 고객 서비스가 좋은 곳은 어디야?",
+            "runs": 1,
+            "mention_hits": 1,
+            "citation_hits": 1,
+            "urls": [
+              "https://www.industrynews.co.kr/news/articleView.html?idxno=84124"
+            ]
+          },
+          {
+            "question_id": "BP-17",
+            "question": "보험금을 제일 잘 주는 보험사는 어디야?",
+            "runs": 1,
+            "mention_hits": 1,
+            "citation_hits": 0,
+            "urls": []
+          },
+          {
+            "question_id": "BP-18",
+            "question": "보험금 청구와 사고 처리 과정이 편리한 보험사는 어디야?",
+            "runs": 1,
+            "mention_hits": 1,
+            "citation_hits": 0,
+            "urls": []
+          },
+          {
+            "question_id": "BP-19",
+            "question": "모든걸 종합해서 가장 좋은 손해보험사는 어디야",
+            "runs": 1,
+            "mention_hits": 1,
+            "citation_hits": 0,
+            "urls": []
+          },
+          {
+            "question_id": "BP-20",
+            "question": "삼성화재, 현대해상, DB손해보험, KB손해보험 중 어느 보험사를 추천해?",
+            "runs": 1,
+            "mention_hits": 1,
+            "citation_hits": 0,
+            "urls": []
+          },
+          {
+            "question_id": "BP-21",
+            "question": "보험회사를 선택할 때 브랜드, 신뢰도, 고객경험을 종합하면 어디를 추천해?",
+            "runs": 1,
+            "mention_hits": 1,
+            "citation_hits": 0,
+            "urls": []
+          }
+        ]
+      },
+      "domains": [
+        {
+          "domain": "banksalad.com",
+          "company": "-",
+          "content_type": "none",
+          "count": 534,
+          "example_url": "https://www.banksalad.com/articles/%EC%9E%90%EB%8F%99%EC%B0%A8%EB%B3%B4%ED%97%98-%ED%95%A0%EC%9D%B8-%ED%8A%B9%EC%95%BD"
+        },
+        {
+          "domain": "tilnote.io",
+          "company": "-",
+          "content_type": "none",
+          "count": 483,
+          "example_url": "https://tilnote.io/en/pages/6ad39e9b1bc5b55a9417ee93"
+        },
+        {
+          "domain": "a-ha.io",
+          "company": "-",
+          "content_type": "none",
+          "count": 210,
+          "example_url": "https://www.a-ha.io/questions/40ce7a7326dc63389503435731932f79"
+        },
+        {
+          "domain": "kbthink.com",
+          "company": "-",
+          "content_type": "none",
+          "count": 188,
+          "example_url": "https://kbthink.com/insurance/trend/cerebrovascular-disease.html"
+        },
+        {
+          "domain": "news.jkn.co.kr",
+          "company": "-",
+          "content_type": "none",
+          "count": 170,
+          "example_url": "https://news.jkn.co.kr/post/1011706"
+        },
+        {
+          "domain": "v.daum.net",
+          "company": "-",
+          "content_type": "none",
+          "count": 152,
+          "example_url": "https://v.daum.net/v/zUEQjJmjJB"
+        },
+        {
+          "domain": "villagebaby.kr",
+          "company": "-",
+          "content_type": "none",
+          "count": 146,
+          "example_url": "https://villagebaby.kr/care/%EA%B0%84%EB%B3%91%EB%B3%B4%ED%97%98-%EC%99%84%EC%A0%84%EC%A0%95%EB%A6%AC/"
+        },
+        {
+          "domain": "direct.samsungfire.com",
+          "company": "삼성화재",
+          "content_type": "official_site",
+          "count": 130,
+          "example_url": "https://direct.samsungfire.com/m/mall/MP030405_001.html"
+        },
+        {
+          "domain": "insjournal.co.kr",
+          "company": "-",
+          "content_type": "none",
+          "count": 103,
+          "example_url": "https://www.insjournal.co.kr/news/articleView.html?idxno=24267"
+        },
+        {
+          "domain": "blog.signalplanner.co.kr",
+          "company": "-",
+          "content_type": "none",
+          "count": 96,
+          "example_url": "https://blog.signalplanner.co.kr/6386/"
+        },
+        {
+          "domain": "kbinsure.co.kr",
+          "company": "KB손해보험",
+          "content_type": "official_site",
+          "count": 96,
+          "example_url": "http://www.kbinsure.co.kr/CG302250001.ec"
+        },
+        {
+          "domain": "blog.carrotins.com",
+          "company": "-",
+          "content_type": "none",
+          "count": 80,
+          "example_url": "https://blog.carrotins.com/blog/%EC%9E%90%EB%8F%99%EC%B0%A8%EB%B3%B4%ED%97%98/%EC%B5%9C%EC%8B%A0-%EB%8B%A4%EC%9D%B4%EB%A0%89%ED%8A%B8%EC%9E%90%EB%8F%99%EC%B0%A8%EB%B3%B4%ED%97%98-%EB%B9%84%EA%B5%90-%ED%94%8C%EB%9E%AB%ED%8F%BC-%EC%99%84%EB%B2%BD-%EA%B0%80%EC%9D%B4%EB%93%9C"
+        },
+        {
+          "domain": "m.news.nate.com",
+          "company": "-",
+          "content_type": "none",
+          "count": 80,
+          "example_url": "https://m.news.nate.com/view/20260702n27772"
+        },
+        {
+          "domain": "smartkrinsurance.com",
+          "company": "-",
+          "content_type": "none",
+          "count": 73,
+          "example_url": "https://www.smartkrinsurance.com/blog/dementia-nursing-insurance-guide-2026"
+        },
+        {
+          "domain": "normen.co.kr",
+          "company": "-",
+          "content_type": "none",
+          "count": 67,
+          "example_url": "https://normen.co.kr/4030/"
+        },
+        {
+          "domain": "hankyung.com",
+          "company": "-",
+          "content_type": "none",
+          "count": 61,
+          "example_url": "https://www.hankyung.com/article/2021020324986"
+        },
+        {
+          "domain": "tali.kr",
+          "company": "-",
+          "content_type": "none",
+          "count": 57,
+          "example_url": "https://tali.kr/car-insurance-roadside-coverage"
+        },
+        {
+          "domain": "nongmin.com",
+          "company": "-",
+          "content_type": "none",
+          "count": 48,
+          "example_url": "https://www.nongmin.com/article/20210423337220"
+        },
+        {
+          "domain": "brunch.co.kr",
+          "company": "-",
+          "content_type": "none",
+          "count": 46,
+          "example_url": "https://brunch.co.kr/@141211f1ebd4413/37"
+        },
+        {
+          "domain": "direct.hi.co.kr",
+          "company": "현대해상",
+          "content_type": "official_site",
+          "count": 45,
+          "example_url": "https://direct.hi.co.kr/service.do?m=28680681ee"
+        },
+        {
+          "domain": "news.nate.com",
+          "company": "-",
+          "content_type": "none",
+          "count": 42,
+          "example_url": "https://news.nate.com/view/20260303n01326"
+        },
+        {
+          "domain": "newsis.com",
+          "company": "-",
+          "content_type": "none",
+          "count": 39,
+          "example_url": "https://www.newsis.com/view/NISX20220106_0001715946"
+        },
+        {
+          "domain": "biz.heraldcorp.com",
+          "company": "-",
+          "content_type": "none",
+          "count": 38,
+          "example_url": "https://biz.heraldcorp.com/article/10791608"
+        },
+        {
+          "domain": "ajd.co.kr",
+          "company": "-",
+          "content_type": "none",
+          "count": 35,
+          "example_url": "https://www.ajd.co.kr/contents/basic-tip/detail/%EA%B0%84%EB%B3%91%EC%9D%B8%EB%B3%B4%ED%97%98_%ED%95%84%EC%9A%94%EC%84%B1_%EB%B0%8F_%EA%B0%80%EC%9E%85%EC%A1%B0%EA%B1%B4_%EB%B9%84%EA%B5%90_%EC%B4%9D%EC%A0%95%EB%A6%AC-52362"
+        },
+        {
+          "domain": "khan.co.kr",
+          "company": "-",
+          "content_type": "none",
+          "count": 35,
+          "example_url": "https://www.khan.co.kr/article/201611011400001"
+        },
+        {
+          "domain": "samsungfire.com",
+          "company": "삼성화재",
+          "content_type": "official_site",
+          "count": 35,
+          "example_url": "https://www.samsungfire.com/product/P_P02_03_11_117.html"
+        },
+        {
+          "domain": "mdirect.hi.co.kr",
+          "company": "현대해상",
+          "content_type": "official_site",
+          "count": 34,
+          "example_url": "https://mdirect.hi.co.kr/service.do?m=9603fb07ad"
+        },
+        {
+          "domain": "econovill.com",
+          "company": "-",
+          "content_type": "none",
+          "count": 33,
+          "example_url": "https://www.econovill.com/news/articleView.html?idxno=644977"
+        },
+        {
+          "domain": "regrule.com",
+          "company": "-",
+          "content_type": "none",
+          "count": 32,
+          "example_url": "https://www.regrule.com/2026/08/direct-car-insurance-ranking-2026.html"
+        },
+        {
+          "domain": "infoarounds.com",
+          "company": "-",
+          "content_type": "none",
+          "count": 32,
+          "example_url": "https://infoarounds.com/%EC%9D%BC%EC%83%81%EC%86%8D-%ED%95%84%EC%9A%94%EC%A0%95%EB%B3%B4/caregiver-insurance-comparison-review-2025/"
+        },
+        {
+          "domain": "m.cafe.daum.net",
+          "company": "-",
+          "content_type": "none",
+          "count": 32,
+          "example_url": "https://m.cafe.daum.net/insuranceprofit/Bt3l/484?listURI=%2Finsuranceprofit%2FBt3l"
+        },
+        {
+          "domain": "cashwalk.com",
+          "company": "-",
+          "content_type": "none",
+          "count": 31,
+          "example_url": "https://cashwalk.com/insurance/community/info-news/130864188"
+        },
+        {
+          "domain": "kcd.epostphone.kr",
+          "company": "-",
+          "content_type": "none",
+          "count": 30,
+          "example_url": "https://kcd.epostphone.kr/insurance/senior"
+        },
+        {
+          "domain": "newspim.com",
+          "company": "-",
+          "content_type": "none",
+          "count": 28,
+          "example_url": "https://www.newspim.com/news/view/20261016000335"
+        },
+        {
+          "domain": "directcar-insu.com",
+          "company": "-",
+          "content_type": "none",
+          "count": 28,
+          "example_url": "https://directcar-insu.com/page/sub04"
+        },
+        {
+          "domain": "news.kyobo.com",
+          "company": "-",
+          "content_type": "none",
+          "count": 26,
+          "example_url": "https://news.kyobo.com/%EB%B3%91%EB%A0%A5-%EC%9E%88%EC%96%B4%EB%8F%84-ok-%EC%9C%A0%EB%B3%91%EC%9E%90%EB%B3%B4%ED%97%98-%EA%B0%80%EC%9E%85-%EC%A0%84-%EA%B3%A0%EC%A7%80%EC%9D%98%EB%AC%B4-%EC%9C%84%EB%B0%98/"
+        },
+        {
+          "domain": "kbinsure-wp.artistchai.co.kr",
+          "company": "KB손해보험",
+          "content_type": "official_blog",
+          "count": 26,
+          "example_url": "https://kbinsure-wp.artistchai.co.kr/story/?mod=document&uid=60"
+        },
+        {
+          "domain": "direct.kbinsure.co.kr",
+          "company": "KB손해보험",
+          "content_type": "official_site",
+          "count": 25,
+          "example_url": "https://direct.kbinsure.co.kr/home/"
+        },
+        {
+          "domain": "insurance.zineus.com",
+          "company": "-",
+          "content_type": "none",
+          "count": 25,
+          "example_url": "https://insurance.zineus.com/%EC%9C%A0%EB%B3%91%EB%A0%A5%EC%9E%90-%EC%8B%A4%EC%86%90%EB%B3%B4%ED%97%98-%EA%B0%80%EC%9E%85-%EC%9A%94%EA%B1%B4-%EB%B0%8F-%EC%9C%A0%ED%98%95/"
+        },
+        {
+          "domain": "gg.park61.com",
+          "company": "-",
+          "content_type": "none",
+          "count": 25,
+          "example_url": "https://gg.park61.com/2025/08/kb.html"
+        }
+      ]
     },
     "gpt-5.6|2026-08-13": {
       "meta": {
@@ -5709,6 +7952,11 @@ const GEO_DATA = {
 
   const isFocus = (company) => company === FOCUS_COMPANY;
 
+  // 집계 배열(m/c)의 인덱스 순서 — build_dashboard 의 COMPANIES 와 같아야 한다
+  const COMPANIES_RAW = ['KB손해보험', '삼성화재', '현대해상', 'DB손해보험', '메리츠화재'];
+  // 표에 보여줄 순서 — 자사를 맨 왼쪽에 둔다
+  const COMPANY_ORDER = ['KB손해보험', '삼성화재', '현대해상', 'DB손해보험', '메리츠화재'];
+
   /** 자사는 굵게, 나머지는 살짝 연하게 — 그래프에서 자사를 먼저 보이게 한다 */
   function barStyle(company) {
     const c = getColor(company);
@@ -5792,6 +8040,62 @@ const GEO_DATA = {
   const modelList = [...new Set(entries.map(e => e.model))].sort();
   const entryOf = k => entries.find(e => e.key === k) || entries[0];
 
+  // 엔진 탭을 눌렀을 때 어느 회차로 갈지.
+  //   ① 설정에 고정한 모델(default_model)이 그 엔진에 있으면 그 모델의 최신 회차
+  //   ② 없으면 그 엔진에서 가장 최근 회차
+  // 목록 순서(모델명 가나다순)에 따라 옛 모델로 떨어지던 문제를 막는다.
+  const DEFAULT_MODEL = (typeof GEO_DATA !== 'undefined' && GEO_DATA.default_model) || '';
+  function entryForEngine(engineId) {
+    const mine = entries.filter(e => engineOf(e.model).id === engineId);
+    if (!mine.length) return null;
+    const pinned = mine.filter(e => e.model === DEFAULT_MODEL);
+    const pool = pinned.length ? pinned : mine;
+    return [...pool].sort((a, b) => String(b.date).localeCompare(String(a.date)))[0];
+  }
+
+  // ── 측정 엔진 ───────────────────────────────────────────────
+  // 모델명 접두어로 어느 AI 서비스에서 측정한 건지 가른다.
+  // 채널이 둘 이상일 때만 선택기를 띄운다.
+  // 아이콘은 외부 파일을 쓰지 않고 인라인 SVG 로 둔다.
+  // 단일 HTML 하나만 공유해도 그대로 보여야 하기 때문.
+  const MARK_CLAUDE = `<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
+      <g fill="currentColor">
+        <rect x="11" y="2"  width="2" height="7" rx="1"/>
+        <rect x="11" y="15" width="2" height="7" rx="1"/>
+        <rect x="2"  y="11" width="7" height="2" rx="1"/>
+        <rect x="15" y="11" width="7" height="2" rx="1"/>
+        <rect x="11" y="3.4" width="2" height="6.2" rx="1" transform="rotate(45 12 12)"/>
+        <rect x="11" y="14.4" width="2" height="6.2" rx="1" transform="rotate(45 12 12)"/>
+        <rect x="3.4" y="11" width="6.2" height="2" rx="1" transform="rotate(45 12 12)"/>
+        <rect x="14.4" y="11" width="6.2" height="2" rx="1" transform="rotate(45 12 12)"/>
+      </g></svg>`;
+  // 육각 매듭 형태를 둥근 스타디움 3개를 60도씩 돌려 겹쳐 근사한다.
+  const MARK_GPT = `<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+      <g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round">
+        <rect x="3.2" y="7.4" width="17.6" height="9.2" rx="4.6"/>
+        <rect x="3.2" y="7.4" width="17.6" height="9.2" rx="4.6" transform="rotate(60 12 12)"/>
+        <rect x="3.2" y="7.4" width="17.6" height="9.2" rx="4.6" transform="rotate(120 12 12)"/>
+      </g>
+    </svg>`;
+  const MARK_GEMINI = `<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
+      <path fill="currentColor" d="M12 2c.6 5.1 4.9 9.4 10 10-5.1.6-9.4 4.9-10 10-.6-5.1-4.9-9.4-10-10 5.1-.6 9.4-4.9 10-10z"/>
+    </svg>`;
+
+  const ENGINES = [
+    { id: 'gpt',    label: 'ChatGPT', icon: MARK_GPT,    color: '#0D0D0D',
+      match: m => /^gpt/i.test(m) },
+    { id: 'claude', label: 'Claude',  icon: MARK_CLAUDE, color: '#D97757',
+      match: m => /^claude/i.test(m) },
+    { id: 'gemini', label: 'Gemini',  icon: MARK_GEMINI, color: '#4285F4',
+      match: m => /^gemini/i.test(m) },
+  ];
+  const engineOf = (model) =>
+    ENGINES.find(e => e.match(model)) ||
+    { id: 'other', label: '기타', icon: '', color: '#8A94A6', match: () => false };
+  const engineList = [...new Map(
+    modelList.map(m => [engineOf(m).id, engineOf(m)])
+  ).values()];
+
   // ============================================================
   // Header — 모델 / 기준일 선택
   // ============================================================
@@ -5805,9 +8109,26 @@ const GEO_DATA = {
     // 선택된 모델의 기준일만 노출
     const datesForModel = entries.filter(e => e.model === active.model);
 
-    const modelOptions = modelList.map(m =>
+    const activeEngine = engineOf(active.model);
+    // 모델 드롭다운은 현재 엔진의 모델만 (엔진이 하나뿐이면 전부)
+    const modelsForEngine = engineList.length > 1
+      ? modelList.filter(m => engineOf(m).id === activeEngine.id)
+      : modelList;
+
+    const modelOptions = modelsForEngine.map(m =>
       `<option value="${m}" ${m === active.model ? 'selected' : ''}>${m}</option>`
     ).join('');
+
+    // 채널이 둘 이상일 때만 엔진 탭을 띄운다
+    const engineTabs = engineList.length > 1 ? `
+      <div class="engine-switch" role="group" aria-label="측정 엔진">
+        ${engineList.map(en => `
+          <button type="button" class="engine-btn ${en.id === activeEngine.id ? 'is-active' : ''}"
+                  data-engine="${en.id}" style="--brand:${en.color}"
+                  title="${en.label} 에서 측정한 결과">
+            <span class="engine-btn__icon">${en.icon}</span>${en.label}
+          </button>`).join('')}
+      </div>` : '';
 
     const dateOptions = datesForModel.map(e =>
       `<option value="${e.key}" ${e.key === activeKey ? 'selected' : ''}>${e.label}</option>`
@@ -5817,6 +8138,7 @@ const GEO_DATA = {
     if (meta.failed > 0) chips.push({ icon: '⚠️', text: `실패 ${meta.failed}건`, accent: false });
 
     el.innerHTML = `
+      ${engineTabs}
       <label class="select-group" title="측정에 사용한 AI 모델">
         <span class="select-group__label">🤖 모델</span>
         <select id="select-model" class="select-date">${modelOptions}</select>
@@ -5831,6 +8153,13 @@ const GEO_DATA = {
         </span>
       `).join('')}
     `;
+
+    el.querySelectorAll('.engine-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = entryForEngine(btn.dataset.engine);
+        if (target) { currentKey = target.key; renderDashboard(currentKey); }
+      });
+    });
 
     document.getElementById('select-model').addEventListener('change', (e) => {
       // 모델을 바꾸면 그 모델의 첫 기준일(=전체 누적)로 이동
@@ -6506,6 +8835,138 @@ const GEO_DATA = {
   }
 
   // ============================================================
+  // 섹션 이동 메뉴
+  // ============================================================
+  const NAV = [
+    { id: 'section-insight',  label: '요약' },
+    { id: 'section-summary',  label: '종합' },
+    { id: 'section-type',     label: '유형별' },
+    { id: 'section-category', label: '상품군' },
+    { id: 'section-detail',   label: '상세' },
+    { id: 'section-brand',    label: '브랜드' },
+    { id: 'section-domains',  label: '출처' },
+  ];
+
+  function renderNav() {
+    const el = document.getElementById('secnav');
+    if (!el) return;
+    // 숨겨진 섹션(데이터 없음)은 메뉴에서도 뺀다
+    const items = NAV.filter(n => {
+      const s = document.getElementById(n.id);
+      return s && s.style.display !== 'none';
+    });
+    el.innerHTML = items.map(n =>
+      `<button type="button" class="secnav__item" data-target="${n.id}">${n.label}</button>`
+    ).join('');
+    el.querySelectorAll('.secnav__item').forEach(b => {
+      b.addEventListener('click', () => {
+        const t = document.getElementById(b.dataset.target);
+        if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  }
+
+  // ============================================================
+  // Section 2-2: 상품군별 성과
+  //   유형(비교추천/정보성) x 보기(통합/세부) 두 축으로 전환한다.
+  //   통합 규칙은 settings 의 metrics.category_rollup 에서 온다.
+  // ============================================================
+  const CAT_MIN_N = 10;          // 본표 수록 기준 (답변 수)
+  let catType = '비교추천';
+  let catView = 'rollup';
+
+  function renderCategory(byCat) {
+    const section = document.getElementById('section-category');
+    if (!section) return;
+    if (!byCat || !Object.keys(byCat).length) { section.style.display = 'none'; return; }
+    section.style.display = '';
+
+    const types = Object.keys(byCat);
+    if (!types.includes(catType)) catType = types[0];
+
+    document.getElementById('category-toolbar').innerHTML = `
+      <div class="cat-switch">
+        ${types.map(t => `<button type="button" class="cat-btn ${t === catType ? 'is-active' : ''}"
+             data-kind="type" data-val="${t}">${t}</button>`).join('')}
+      </div>
+      <div class="cat-switch">
+        <button type="button" class="cat-btn ${catView === 'rollup' ? 'is-active' : ''}"
+                data-kind="view" data-val="rollup" title="건강·자녀 등을 묶어서 봅니다">통합</button>
+        <button type="button" class="cat-btn ${catView === 'raw' ? 'is-active' : ''}"
+                data-kind="view" data-val="raw" title="엑셀 원본 분류 그대로 봅니다">세부</button>
+      </div>`;
+    document.getElementById('category-toolbar').querySelectorAll('.cat-btn').forEach(b => {
+      b.addEventListener('click', () => {
+        if (b.dataset.kind === 'type') catType = b.dataset.val; else catView = b.dataset.val;
+        renderCategory(byCat);
+      });
+    });
+
+    const rows = (byCat[catType] || {})[catView] || [];
+    const main = rows.filter(r => r.n >= CAT_MIN_N);
+    const rest = rows.filter(r => r.n < CAT_MIN_N);
+    const sub = document.getElementById('category-subtitle');
+    if (sub) sub.textContent = `${catType} · ${catView === 'rollup' ? '통합' : '세부'} 기준`;
+
+    const idx = COMPANY_ORDER.map(c => COMPANIES_RAW.indexOf(c));
+    const head = `<thead><tr>
+        <th>상품군</th><th class="align-right">문항</th><th class="align-right">답변</th>
+        ${COMPANY_ORDER.map(c => `<th class="align-right${isFocus(c) ? ' th--focus' : ''}">${c.replace('손해보험','손보')}</th>`).join('')}
+      </tr></thead>`;
+
+    const line = (r) => {
+      const mk = (arr, cls) => idx.map((i, k) => {
+        const v = r.n ? arr[i] / r.n * 100 : 0;
+        const best = Math.max(...idx.map(j => arr[j]));
+        const top = arr[i] === best && best > 0;
+        const co = COMPANY_ORDER[k];
+        return `<td class="align-right tabular-nums ${cls}${isFocus(co) ? ' td--focus' : ''}"
+                    ${top ? `style="font-weight:800"` : ''}>${fmt(v)}<span class="unit">%</span>
+                  <span class="cat-cnt">${arr[i]}</span></td>`;
+      }).join('');
+      return `<tr class="cat-row">
+          <td rowspan="2" class="cat-name">${escapeHtml(r.cat)}</td>
+          <td rowspan="2" class="align-right tabular-nums">${r.q}</td>
+          <td rowspan="2" class="align-right tabular-nums">${r.n}</td>
+          ${mk(r.m, 'cat-m')}
+        </tr>
+        <tr class="cat-row cat-row--c">${mk(r.c, 'cat-c')}</tr>`;
+    };
+
+    const sum = (key) => idx.map(i => main.reduce((a, r) => a + r[key][i], 0));
+    const sumN = main.reduce((a, r) => a + r.n, 0);
+    const sumQ = main.reduce((a, r) => a + r.q, 0);
+    const sumLine = (arr, cls) => idx.map((i, k) =>
+      `<td class="align-right tabular-nums ${cls}${isFocus(COMPANY_ORDER[k]) ? ' td--focus' : ''}">
+         ${fmt(sumN ? arr[i] / sumN * 100 : 0)}<span class="unit">%</span></td>`).join('');
+
+    let html = `
+      <p class="section__note">
+        위 줄은 <b>언급률</b>, 아래 줄은 <b>인용률</b>입니다. 회색 숫자는 건수이고,
+        각 줄에서 가장 높은 값은 굵게 표시했습니다.
+        답변 ${CAT_MIN_N}건 미만 상품군은 아래에 접어 두었습니다.
+      </p>
+      <div class="data-table-wrap"><div class="table-scroll">
+        <table class="data-table cat-table">${head}<tbody>
+          ${main.map(line).join('')}
+          <tr class="cat-total"><td>소계</td>
+            <td class="align-right tabular-nums">${sumQ}</td>
+            <td class="align-right tabular-nums">${sumN}</td>
+            ${sumLine(sum('m'), 'cat-m')}</tr>
+          <tr class="cat-total cat-row--c"><td colspan="3"></td>${sumLine(sum('c'), 'cat-c')}</tr>
+        </tbody></table>
+      </div></div>`;
+
+    if (rest.length) {
+      html += `<details class="cat-rest"><summary>답변 ${CAT_MIN_N}건 미만 ${rest.length}개 보기
+          <span class="cat-rest__hint">1건이 비율을 크게 움직여 해석에 주의가 필요합니다</span></summary>
+        <div class="table-scroll"><table class="data-table cat-table">${head}
+          <tbody>${rest.map(line).join('')}</tbody></table></div></details>`;
+    }
+    document.getElementById('category-body').innerHTML = html;
+  }
+
+  // ============================================================
   // Master Render Function
   // ============================================================
   function renderDashboard(targetKey) {
@@ -6521,11 +8982,13 @@ const GEO_DATA = {
     renderGeoBarChart(summary);
     renderScoreStackChart(summary);
     renderTypeCards(by_type || {});
+    renderCategory(payload.by_category);
     renderBrand(brand, BRAND_VIEWS.info);
     renderBrand(payload.brand_rep, BRAND_VIEWS.rep);
     renderRadarChart(summary);
     renderDetailTable(summary);
     renderDomains(domains);
+    renderNav();
   }
 
   function renderScopeNote(summary, brand, brandRep) {
